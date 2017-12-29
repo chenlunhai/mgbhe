@@ -1,0 +1,30 @@
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="baidu-site-verification" content="brSKk1xvoHM7I577">
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<title>店铺详情</title>
+<link href="/Public/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body style="background:#f0eff5">
+<div class="warp">
+	<div class="details">
+		<ul>
+			<li>开业时间：2017-10-19 15:14:21</li>
+			<li>设备编号：2017101900001</li>
+			<li>经营地址：湖南省长沙市雨花区湖南省长沙市雨</li>
+			<li>今日营业额：1000.00</li>
+			<li>昨日营业额：2000.00</li>
+			<li>本月营业额：30000.00</li>
+			<li>累计营业额：1000000.00</li>
+		</ul>
+		<div class="de_bx"><a href="<?php echo U('User/repair');?>">故障报修</a></div>
+		<div class="de_class"><a href="<?php echo U('User/turnover');?>">查看营业额明细</a></div>
+	</div>
+</div>
+</body>
+</html>

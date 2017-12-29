@@ -1,0 +1,114 @@
+<include file="Public/head"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/H-ui.admin.css" />
+<title>资讯列表</title>
+</head>
+<body>
+<div class="page-container">	
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+	<div class="mt-20">
+	<div class="text-c" style="margin-top:10px;">
+	    <table cellpadding="3" cellspacing="0" class="table_98">
+			 <form  method="post" id="form1">
+			  <tbody>
+			  <tr>
+				<td>
+			 
+<!-- 				余额范围：<input type="text" name="minbalance" value="{$assign['minbalance']}" class="btn" placeholder="最小余额">-<input type="text" name="maxbalance" value="{$assign['maxbalance']}" class="btn" placeholder="最大余额">
+				用户昵称：<input type="text" name="nickname" value="{$assign['nickname']}" class="btn">
+				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找" onclick="$('input[name=state]').val(0)">
+				<input type="hidden" name="state" value="0">
+				<input class="btn btn-success" type="submit" value="导出" onclick="subExport()"> -->
+				</td>
+			  </tr>
+		  	  </tbody>
+		  	  </form>
+		</table>
+	</div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+				 
+					 
+					<th>手机号</th>
+					<th>积分数量</th>
+					<th>积分种类</th>
+					<th>来源</th>
+					<th>添加时间</th>
+			 
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="integral_list" id="val">
+			<tr class="text-c">
+			 
+				 
+				<td>{:getUserMobile($val['uid'])}</td>
+				<td><if condition="$val['type'] eq 1">-</if>{$val.money}</td>
+				<td>{:get_integral_type($val['state'])}</td>
+				<td>{$val.remark}</td>
+				<td>{:turnTime($val['addtime'])}</td>
+				 
+				 
+			</tr>
+			</volist>
+			
+			</tbody>
+
+		</table>
+		<div id="page">{$page}</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script type="text/javascript">
+function subExport(){
+	$('input[name=state]').val(1);
+}
+function onCash(id,i){
+	if(i==2){
+		layer.prompt(function(val, index){
+		  upCash(id,2,val);
+		});
+	}
+ 	if(i==1){
+ 		layer.confirm('确定该操作吗？', {
+		  btn: ['确定','取消'] //可以无限个按钮
+		  ,btn1: function(index, layero){
+		    upCash(id,1,0);
+		  }
+		});
+ 	}
+}
+function upCash(id,i,r){
+	var icon = 2;
+	$.ajax({
+		url:'{:U("User/up_wealth_integral_record")}',
+		type:'post',
+		dataType:'json',
+		data:{id:id,state:i,remark:r},
+		beforeSend:function(data){layer.load(2)},
+		success:function(data){
+			layer.closeAll();
+			if(data.status==1) icon = 1;
+			layer.msg(data.msg, {
+			   icon: icon,
+			   shade: 0.5,
+			   time: 2000
+			});
+			setTimeout('location.reload();',2000);
+		}
+	})
+}
+function kuaidi(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('.table-sort').dataTable();
+	})
+</script>
+</body>
+</html>

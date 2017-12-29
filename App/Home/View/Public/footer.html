@@ -1,0 +1,17 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/footer.css">
+<div class="footer">
+	<ul class="u4">
+		<li <if condition="ACTION_NAME eq 'index'">class="cur"</if> >
+			<a href="{:U('Index/index')}" ><div class="img img1"></div><p>拼采廉</p></a>
+		</li>
+		<li <if condition="ACTION_NAME eq 'regiment'">class="cur"</if> >
+			<a href="{:U('Index/regiment')}" ><div class="img img4"></div><p>我的团</p></a>
+		</li>
+		<li <if condition="ACTION_NAME eq 'order_list'">class="cur"</if> >
+			<a href="{:U('Index/order_list')}" ><div class="img img2"></div><p>查订单</p></a>
+		</li>
+		<li <if condition="ACTION_NAME eq 'personal'">class="cur"</if> >
+			<a href="{:U('User/personal')}" ><div class="img img3"></div><p>会员中心</p></a>
+		</li>
+	</ul>
+</div>

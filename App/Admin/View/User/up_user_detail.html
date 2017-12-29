@@ -1,0 +1,102 @@
+<include file="Public/head"/>
+<title>资讯列表</title>
+</head>
+<body>
+
+<article class="page-container">
+	<form action="" target="nm_iframe" method="post" class="form form-horizontal" id="form-admin-add">
+		<!-- <div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>会员头像：</label>
+			<div class="formControls col-xs-4">
+				 <img src="{$user.user_logo}" width="150" height="150">
+			</div>
+		</div> -->
+		<div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>姓名：</label>
+			<div class="formControls col-xs-4">
+				<input type="text" class="input-text" name="realname" value="{$user.realname}">
+			</div>
+		</div>
+		<!-- <div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>身份证：</label>
+			<div class="formControls col-xs-4">
+				<input type="text" class="input-text" name="id_card" value="{$user.id_card}">
+			</div>
+		</div> -->
+		<div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>开户银行：</label>
+			<div class="formControls col-xs-4">
+				<select name="bank_user" class="s_select">
+				  <option value="">请选择开户行</option>
+				  <option value="中国招商银行" <if condition="$user['bank_user'] eq '中国招商银行'">selected</if>>中国招商银行</option>
+		          <option value="中国农业银行" <if condition="$user['bank_user'] eq '中国农业银行'">selected</if>>中国农业银行</option>
+		          <option value="中国建设银行" <if condition="$user['bank_user'] eq '中国建设银行'">selected</if>>中国建设银行</option>
+		          <option value="中国工商银行" <if condition="$user['bank_user'] eq '中国工商银行'">selected</if>>中国工商银行</option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>开户支行：</label>
+			<div class="formControls col-xs-4">
+				<input type="text" class="input-text" name="bank_address" value="{$user.bank_address}">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>持卡人：</label>
+			<div class="formControls col-xs-4">
+				<input type="text" class="input-text" name="bank_name" value="{$user.bank_name}">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>银行卡号：</label>
+			<div class="formControls col-xs-4">
+				<input type="text" class="input-text" name="bank_card" value="{$user.bank_card}">
+			</div>
+		</div>
+		<!-- <div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>性别：</label>
+			<div class="formControls col-xs-4">
+				<input type="text" class="input-text" name="sex" value="{$user.sex}">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-2"><span class="c-red">*</span>出生年月：</label>
+			<div class="formControls col-xs-4">
+				<input type="text" class="input-text" name="birthday" value="{$user.birthday}">
+			</div>
+		</div> -->
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="button"  id="subbtn"value="&nbsp;&nbsp;编辑&nbsp;&nbsp;" onclick="subData()">
+			</div>
+		</div>
+		<input type="hidden" name="uid" value="{$user.id}">
+		<iframe   name="nm_iframe" style="display:none;"></iframe>
+	</form>
+</article>
+<include file="Public/js"/>
+<script type="text/javascript">
+function info(data){
+layer.msg(data.msg, {
+   icon: data.status,
+   shade: 0.5,
+   time: 2000
+});
+$('#subbtn').val(data.msg);
+if(data.status==1){
+	setTimeout('parent.layer.closeAll()',2000);
+	setTimeout('parent.location.reload()',2000);
+}
+}
+function subData (obj) {
+	$('#subbtn').val('正在处理...').attr('onclick','');
+	$('form').submit();
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('.table-sort').dataTable();
+	})
+</script>
+</body>
+</html>

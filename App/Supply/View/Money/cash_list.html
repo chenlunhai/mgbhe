@@ -1,0 +1,192 @@
+<include file="Public/head"/>
+
+<script src="__PUBLIC__/admin/js/laydate/laydate.js"></script>
+
+<title>资讯列表</title>
+
+</head>
+
+<body>
+
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 提现列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+
+<div class="page-container">
+
+    <div class="cl pd-5 bg-1 bk-gray mt-20">   <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+
+    <div class="text-c" style="margin-top:10px;">
+
+        <table cellpadding="3" cellspacing="0" class="table_98">
+
+            <form  method="post" id="form1" action="{:U("Money/cash_list")}">
+
+                <tbody>
+
+                <tr>
+
+                    <td>
+
+                        处理状态：<select name="state" class="select" style="width: 100px;height: 32px;" id="">
+
+                        <option value="0">请选择</option>
+
+                        <option value="1" >未处理</option>
+                        <option value="3" >通过</option>
+                        <option value="3" >未通过</option>
+
+                    </select>
+
+                        时间范围：<input type="text" id="stime" style="width:100px" class="input-text" name="stime" size="20" >
+
+                        -<input type="text" id="dtime" style="width:100px" class="input-text" name="dtime" size="10" >
+
+                        <input name="submit" class="btn btn-success" type="submit" id="submit" value="查找">
+
+                        <input type="hidden" name="state" value="0">
+
+                        <input class="btn btn-success" type="submit" value="导出" onclick="subExport()">
+
+                    </td>
+
+
+                </tr>
+
+                </tbody>
+
+            </form>
+
+        </table>
+
+    </div>
+
+    <div class="mt-20">
+
+        <table class="table table-border table-bordered table-bg table-hover table-sort">
+
+            <thead>
+
+            <tr class="text-c">
+                <td style="width:25px;">序号</td>
+                <th style="width:25px;">提现金额</th>
+
+                <th style="width:25px;">手续费</th>
+
+                <th style="width:80px;">提现账号</th>
+
+                <!--<th style="width:80px;">提现到</th>-->
+
+                <th style="width:55px">处理情况</th>
+
+                <th style="width:100px;">添加时间</th>
+
+
+            </tr>
+
+            </thead>
+
+            <tbody>
+
+            <volist name="data" id="val" key="key">
+
+                <tr class="text-c">
+                    <td style="padding:0; border-left:none">{$val.id}</td>
+                    <td>{$val.money}</td>
+                    <td>{$val.fee}</td>
+                    <td>{$val.account}</td>
+                    <!--<td>银行</td>-->
+
+                    <td>
+                        <eq name="val.state" value="0">未处理</eq>
+                        <eq name="val.state" value="1">通过</eq>
+                        <eq name="val.state" value="2">不通过</eq>
+                    </td>
+
+                    <td>{$val.addtime}</td>
+
+                </tr>
+
+            </volist>
+
+            </tbody>
+
+        </table>
+
+        <div id="page">{$page}</div>
+
+    </div>
+
+</div>
+
+<include file="Public/js"/>
+
+<script type="text/javascript" src="__PUBLIC__/admin/js/jquery.ui.js"></script>
+
+<script type="text/javascript">
+
+    $(function(){
+
+        laydate({
+
+            elem: '#stime'
+
+        })
+
+        laydate({
+
+            elem: '#dtime'
+
+        })
+
+    })
+
+    function subExport(){
+
+        $('input[name=state]').val(1);
+
+    }
+
+    function upOrderDelivery(id){
+
+        layer.prompt({title:'请输入快递编号'},function(val, index){
+
+            var ajaxData = {
+
+                url:'{:U("Order/up_trade")}',type:'post',dataType:'json',data:{id:id,delivery_sn:val},
+
+                beforeSend:function(data){ layer.load(2)},
+
+                success:function(data){
+
+                    layer.closeAll();
+
+                    if(data.status==1){
+
+                        setTimeout('location.reload()',2000);
+
+                    }
+
+                    layer.msg(data.msg, {
+
+                        icon: data.status,
+
+                        shade: 0.5,
+
+                        time: 2000
+
+                    });
+
+                }
+
+            };
+
+            $.ajax(ajaxData);
+
+        });
+
+    }
+
+</script>
+
+</body>
+
+</html>

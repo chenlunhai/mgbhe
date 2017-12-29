@@ -1,0 +1,82 @@
+<include file="Public/head"/>
+ 
+<title>资讯列表</title>
+</head>
+<body>
+<div class="page-container">	
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+	<div class="mt-20">
+	<div class="text-c" style="margin-top:10px;">
+	    <table cellpadding="3" cellspacing="0" class="table_98">
+			 <form  method="post" id="form1">
+			  <tbody>
+			  <tr>
+				<td>
+			 
+<!-- 				余额范围：<input type="text" name="minbalance" value="{$assign['minbalance']}" class="btn" placeholder="最小余额">-<input type="text" name="maxbalance" value="{$assign['maxbalance']}" class="btn" placeholder="最大余额">
+				用户昵称：<input type="text" name="nickname" value="{$assign['nickname']}" class="btn">
+				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找" onclick="$('input[name=state]').val(0)">
+				<input type="hidden" name="state" value="0">
+				<input class="btn btn-success" type="submit" value="导出" onclick="subExport()"> -->
+				</td>
+			  </tr>
+		  	  </tbody>
+		  	  </form>
+		</table>
+	</div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+				 
+					 
+					<th>用户ID</th>
+					<th>用户账号</th>
+					<th>用户姓名</th>
+					<th>原身份</th>
+					<th>转换后身份</th>
+					<th>操作人</th>
+					<th>操作时间</th>
+			 
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="user" id="val">
+			<tr class="text-c">
+			 
+				 
+				<td>{$val.push_sn}</td>
+				<td>{$val.mobile}</td>
+				<td>{$val.realname}</td>
+				<td>{:getAgentGradeName(['agent_grade'=>$val['gid']])}</td>
+				<td>{:getAgentGradeName(['agent_grade'=>$val['new_gid']])}</td>
+				<td>{$val.adminname}</td>
+				<td>{$val.addtime}</td>
+				 
+				 
+			</tr>
+			</volist>
+			
+			</tbody>
+
+		</table>
+		<div id="page">{$page}</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script type="text/javascript">
+function subExport(){
+	$('input[name=state]').val(1);
+}
+ 
+function kuaidi(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('.table-sort').dataTable();
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<include file="Public/head"/>
+<link href="__PUBLIC__/admin/css/H-ui.login.css" rel="stylesheet" type="text/css" />
+<title>微营销后台系统登陆</title>
+
+</head>
+<body>
+<div class="header"></div>
+<div class="loginWraper">
+  <div id="loginform" class="loginBox">
+
+    <form name="Login" class="form form-horizontal"  method="post" onSubmit="return CheckForm();">
+      <div class="row cl">
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60d;</i></label>
+        <div class="formControls col-xs-8">
+         
+          
+          <input type="text" name="adminname" id="item1" placeholder="账户" class="input-text size-L" autocomplete="off" >
+        </div>
+      </div>
+      <div class="row cl">
+        <label class="form-label col-xs-3"><i class="Hui-iconfont">&#xe60e;</i></label>
+        <div class="formControls col-xs-8">
+          <input type="password" name="password" id="item2" placeholder="密码"  value="" class="input-text size-L" autocomplete="off">
+        </div>
+      </div>
+       
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+      </div>
+      </div>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+         
+        </div>
+      </div>
+      <div class="row cl">
+        <div class="formControls col-xs-8 col-xs-offset-3">
+          <input name="" type="submit" class="btn btn-success radius size-L" value="&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;">
+          <input name="" type="reset" class="btn btn-default radius size-L" value="&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;">
+
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="footer">Copyright  微营销管理系统 v2.0</div>
+<include file="Public/js"/>
+<script language=javascript>
+function CheckForm()
+{
+  if(document.Login.adminname.value == "")
+  {
+    alert("请输入用户名！");
+    document.Login.adminname.focus();
+    return false;
+  }
+  if(document.Login.password.value == "")
+  {
+    alert("请输入密码！");
+    document.Login.password.focus();
+    return false;
+  } 
+  $.ajax({
+    url:'{:U("Login/index")}',
+    type:'post',
+    dataType:'json',
+    data:{adminname:document.Login.adminname.value,password:document.Login.password.value},
+    success:function(data){
+      if(data.status==1){
+        location.href="{:U('Index/index')}";
+        return;
+      }
+      alert(data.msg);
+    }
+
+  })
+  return false;
+}
+//-->
+</script>
+</body>
+</html>

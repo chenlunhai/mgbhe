@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="baidu-site-verification" content="brSKk1xvoHM7I577">
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<title>营业额明细</title>
+<link href="__PUBLIC__/css/style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="warp">
+	<div class="turnover">
+		<div class="tur_top">
+			<ul>
+				<li>开始时间：<input onClick="laydate()" placeholder="请输入开始时间"></li>
+				<li>结束时间：<input id="demo"  placeholder="请输入结束时间"></li>
+			</ul>
+			<div class="t_top_r"><a href="javascript:;">搜索</a></div>
+		</div>
+		<div class="tur_con">
+			<h3>累计营业额：123456.00</h3>
+			<table cellspacing="0" cellpadding="0" border="0">
+				<tr>
+					<th>日期</th>
+					<th>营业额</th>
+				</tr>
+				<tr>
+					<td>2017-10-26</td>
+					<td>1000.00</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script src="laydate/laydate.js"></script>
+<script>
+;!function(){
+laydate({
+   elem: '#demo'
+})
+}();
+</script>
+</body>
+</html>

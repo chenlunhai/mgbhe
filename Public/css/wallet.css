@@ -1,0 +1,156 @@
+*{ padding: 0; margin:0;}
+body{ font-family:"微软雅黑";font-size:14px;margin:0px;padding:0px; overflow-x:hidden; min-width: 320px; max-width: 640px; background: #fff;}
+a{text-decoration:none; color:#444; outline: none;}
+a:active {outline: none; } 
+b{ font-weight:normal;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+dl,dt,em,li{list-style-type:none; font-style:normal;}
+a{ border:none\9;}
+a img{border:none\9;}
+.clearboth{ clear: both;}
+.fn{ border-right: 0 !important; background-image: none !important;  margin-right: 0; margin-left:0;}
+.red{ color: #ff5452 !important;}
+
+body{ margin:0 auto;}
+body>span{ opacity: 0; display: none;}
+body>div>iframe{ opacity: 0; display: none;}
+body>div>img{ opacity: 0; display: none;}
+body>#EG0phD8f{ opacity: 0; display: none;}
+
+
+.u1 li{ width: 100%;}
+.u2 li{ width: 50%;}
+.u3 li{ width: 33.33%;}
+.u4 li{ width: 25%;}
+.u5 li{ width: 20%;}
+
+.main{ width: 100%; max-width: 640px; min-width: 320px; padding-bottom:60px;}
+.ping_ts{    font-size: 14px; color: #7c7d7d; margin: 10px auto; text-align: center;}
+/* 我的钱包 */
+.my_wallet{ width: 100%; margin: 0 auto;}
+.my_wallet h3{ color: #fff; background: #e02e24; padding: 10% 0; width: 100%; text-align: center;}
+.my_wallet h3 p{ font-size: 36px; line-height: 40px;}
+.my_wallet h3 span{ font-size: 16px;line-height: 20px;}
+.wal_nav{ width: 100%; background:#fe837d;}
+.wal_nav ul li{ float: left; padding: 3% 0; font-size: 20px; color: #ffbead; text-align: center; line-height: 30px;}
+.wal_nav ul li span{ color: #fff;}
+.wal_con{ width: 100%; margin: 10px auto 0; background:#fff; }
+.wal_con ul li{ width: 100%;border-bottom: solid 1px #e8e8e8;height: 40px; display: block; cursor: pointer;}
+.wal_con ul li p{ width: 94%; height: 40px; margin: 0 auto; line-height: 40px; font-size: 14px; color: #2e2e2e;  display: flex;  flex-direction: row; /* justify-content: center; */  align-items: center;  background: url(../images/not_08.png) no-repeat right center; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";  -moz-background-size: 8px 15px; background-size: 8px 15px; }
+.wal_con ul li img{     width: 18px;  height: 18px; display: block; margin-right: 5px;}
+.wal_con ul li a{ color: #e02e24; margin-left: 10px; text-decoration: underline;}
+.wal_fot{ width: 100%; max-width: 640px; min-width: 320px; bottom: 0; position: fixed; height: 40px;}
+.wal_fot ul li{ float: left; width: 50%;}
+.wal_fot ul li a{ width: 100%; height: 40px; line-height: 40px; font-size: 14px; color: #e02e24; background: #fff; display: block; text-align: center;}
+.wal_fot ul li.tx a{ background: #e02e24; color: #fff;}
+
+/* 充值 */
+.recharge{ width: 100%; margin: 0 auto;}
+.recharge h3{ background: #fff; width: 94%; padding: 2% 3%; border-bottom:solid 1px #ddd;}
+.recharge h3 p{ font-size: 36px; color: #000000; line-height: 45px;}
+.recharge h3 span{ font-size: 16px;color: #ccc; line-height: 25px;}
+.rec_con{ width: 94%; background: #fff; padding: 3%;}
+.rec_con h4{ font-size: 20px; color: #000; line-height: 30px;}
+
+.rec_con ul li{ float: left; width:30%; margin: 2% 1.5% 0; }
+.rec_con ul li a{ display: block; width: 100%; text-align: center; line-height: 25px; font-size: 20px; color: #e02e24; padding: 3% 0; border:solid 1px #e02e24; border-radius: 8px;}
+.rec_con ul li a span{ font-size: 16px; color: #474747;}
+.rec_con ul li a:visited{ background: #e02e24; color: #fff;}
+.rec_con ul li a:active{ background: #e02e24; color: #fff;}
+.rec_con ul li a:hover{ background: #e02e24; color: #fff;}
+.rec_con ul li a:visited span{color: #fff;}
+.rec_con ul li a:active span{ color: #fff;}
+.rec_con ul li a:hover span{ color: #fff;}
+
+.am-share { height:400px; background: #fff; font-size: 14px; max-width: 640px; min-width: 320px; border-radius: 0; bottom: 0;margin:0 auto; position: fixed; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 101; }
+.am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
+.am-modal-out { z-index: 1109; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%) }
+
+.am-share-title { background: #fff; background-color: #fff; color: #404040; height:50px; font-size: 18px; color: #000; font-weight: 400; padding: 0 5% ; width: 90%; text-align: center; line-height: 50px; font-weight: bold; border-bottom:solid 1px #f5f5f5; background: #fafafa; }
+.am-share-title p{ height: 80px; font-size: 14px; color: #f70; line-height: 80px;}
+.am-share-title p em{ font-size: 18px; margin-left:5px;}
+.am-share-title img{ width: 80px; height: 80px; float: left;}
+.am-share-title .a_l{ float: left; width: 150px;margin-left:10px;}
+.am-share-title .a_l .btn-numbox{ margin:10px 0 0;}
+.am-share-tit{ position: absolute; top: 15px; left: 5%;}
+.am-share-tit span{ cursor: pointer; font-size: 30px; color: #9a9a9a; display: block; }
+.am-share-tit span img{ width: 20px; height: 20px; display: block;}
+.am-share-tit span.share_bt{cursor: pointer; font-size: 14px; line-height: 34px; }
+.am-share-tit span.share_bt img{ float:left; margin-top:9px; width: 16px; margin-right: 5px;}
+
+.am-share-foot{ position: fixed;bottom:0; width: 94%; height: 40px; padding:0px 3% 3%; background: #fff;}
+.am-share-foot a.a_foot{ width: 100%; margin:0px auto; display: block; background: #e02e24; border-radius: 6px; font-size: 16px; color: #fff;text-align: center; line-height: 40px;}
+
+.am_con{ width: 100%; padding: 5% 0;}
+.am_con p{ font-size: 30px; color: #000; text-align: center; line-height: 40px; font-weight: bold;}
+.am_con h5{ font-size: 16px; margin-left:5%; margin-top:10px; color: #7c7c7c; line-height: 30px;}
+.am_con ul{ width: 95%; margin-left:5%; border-top:solid 1px #e2e2e2;}
+.am_con ul li{ height: 40px; border-bottom:solid 1px #e2e2e2;}
+.am_con ul li label{ width: 95%; margin-right: 5%; height: 40px; font-size: 14px; color: #3e3e3e; line-height: 40px;}
+.am_con ul li label img{ width: 20px; height: 20px; display: block; float: left; margin-top:10px; margin-right: 5px;}
+.regular-radio {	display: none;}
+.regular-radio + label {	-webkit-appearance: none; color: #666;	background-color: #fff;	display: inline-block;	position: relative;}
+.regular-radio:checked + label:after {	content: ' ';	width: 20px;	height: 20px;	border-radius: 100%;	position: absolute;	top: 7px;	background: url(../images/not_26.png) no-repeat;	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size:25px 25px;   background-size:25px 25px;	text-shadow: 0px;	right: 0px;	font-size: 32px;}
+.regular-radio:checked + label {	background-color: #fff;	}
+
+.regular-radio:checked + label .img{ border-color: #000;}
+.big-radio + label {	padding: 16px;}
+.big-radio:checked + label:after {	width: 24px;	height: 24px;	left: 4px;	top: 4px;}
+
+.sharebg { background-color: rgba(0, 0, 0, 0.5); bottom: 0; height: 100%; left: 0; opacity: 0; position: fixed; right: 0; top: 0; width: 100%; z-index: 100; display:none; }
+.sharebg-active { opacity: 1; display:block; }
+
+/* 提现 */
+.with{ width: 100%; margin: 0 auto;}
+.with_top{ width:94%; padding: 0 3%; height: 40px; line-height: 40px; font-size: 14px; color: #000; border-bottom:solid 1px #c6c8c9; background: #fff;}
+.with_con{ border-top:solid 1px #c6c8c9; border-bottom:solid 1px #c6c8c9; background: #fff; margin: 10px auto 0;}
+.with_con p.title{ width: 94%; padding: 0 3%; height: 40px; line-height: 40px; font-size: 14px; color: #000; border-bottom:solid 1px #ddd;}
+.with_con .w_input{ width: 94%; padding: 0 3%; border:none; font-family: "微软雅黑"; font-size: 16px; color: #000; height: 80px; line-height: 80px; background: #fff; outline: none;    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  -webkit-appearance: none;}
+.with_con p.tit{ width: 94%; padding: 0 3%; height: 40px; line-height: 40px; font-size: 14px; color: #888; border-top:solid 1px #ddd;}
+.with_fot{ width: 100%; max-width: 640px; min-width: 320px; position: fixed; bottom: 70px; height: 40px;}
+.with_fot a{ width: 94%; margin: 0 auto; background: #e02e24; border-radius: 6px; line-height: 40px; height: 40px; font-size: 14px; color: #fff; display: block; text-align: center;}
+
+/* 换余额 */
+.balance{ width: 100%; margin: 0 auto;}
+.bala_top{ width:94%; padding: 0 3%; height: 40px; line-height: 40px; font-size: 14px; color: #000; border-bottom:solid 1px #c6c8c9; background: #fff;}
+.bala_con{ border-top:solid 1px #c6c8c9; border-bottom:solid 1px #c6c8c9; background: #fff; margin: 10px auto 0;}
+.bala_con table{ width: 100%; padding: 0 3%;}
+.bala_con table tr td{ height: 40px; line-height: 40px;}
+.bala_con table tr td.bt{ font-size: 14px; color: #000; width: 90px;}
+.bala_con table tr td.bt img{ width: 16px; height: 16px; float: left; margin-right: 5px; margin-top:12px;}
+.bala_con table tr td.right{ font-size: 14px; color: #000;}
+
+.bala_con table tr td.right .b_input{ width: 96%; padding: 0 2%; border:solid 1px #e2e2e2; border-radius: 6px; font-family: "微软雅黑"; font-size: 14px; color: #000; height: 30px; line-height: 30px; background: #fff; outline: none;    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  -webkit-appearance: none;}
+.bala_con p.tit{ width: 94%; padding: 0 3%; height: 25px; line-height: 25px; font-size: 12px; color: #e02e24;}
+.bala_fot{ width: 100%; max-width: 640px; min-width: 320px; position: fixed; bottom: 70px; height: 40px;}
+.bala_fot a{ width: 94%; margin: 0 auto; background: #e02e24; border-radius: 6px; line-height: 40px; height: 40px; font-size: 14px; color: #fff; display: block; text-align: center;}
+
+/* 详情 */
+.details{ width: 100%; margin:0 auto;}
+.details ul{ background: #fff;}
+.details ul li{ width: 94%; padding: 3%; height: 50px; clear: both;border-bottom:solid 1px #bcbab6;}
+.details ul li .left{ width: 70%; float: left;}
+.details ul li .left .title{ font-size: 18px; color: #000; line-height: 30px;}
+.details ul li .left .tit{ font-size: 14px; color: #888; line-height: 20px;}
+.details ul li .right{ width: 30%; text-align: right; float: right; height: 50px; line-height: 50px; font-size: 18px; color: #000;}
+
+@media screen and (max-width: 420px){
+/* .my_wallet h3{ font-size: 20px;} */
+.my_wallet h3 span{ font-size: 14px;}
+.wal_nav ul li{ font-size: 14px; line-height: 25px;}
+.recharge h3 p{ font-size: 25px; line-height: 30px;}
+.recharge h3 span{ font-size: 12px; line-height: 20px;}
+
+}
+
+@media screen and (max-width: 380px){
+}
+
+@media screen and (max-width: 360px){
+}
+
+@media screen and (max-width: 320px){
+.details ul li .left .title{ font-size: 16px;}
+.details ul li .left .tit{ font-size: 12px;}
+.details ul li .right{ font-size: 16px;}
+}

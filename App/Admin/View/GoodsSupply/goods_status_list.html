@@ -1,0 +1,85 @@
+<include file="Public/head"/>
+<title>资讯列表</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 供货商商品审核列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">	
+	<div class="cl pd-5 bg-1 bk-gray mt-20">    <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+	<div class="mt-20">
+	<div class="text-c" style="margin-top:10px;">
+	    <table cellpadding="3" cellspacing="0" class="table_98">
+			 <form  method="post" id="form1">
+			  <tbody>
+			  <tr>
+				<td>
+				商品名称：<input type="text" name="goods_name" value="{$goods_name}" class="btn">
+				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找">
+				<input type="hidden" name="state" value="0">
+				<!-- <input class="btn btn-success" type="submit" value="导出" onclick="subExport()"> -->
+				</td>
+			  </tr>
+		  	  </tbody>
+		  	  </form>
+		</table>
+	</div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+				<tr class="text-c">
+					<th>商品名称</th>
+					<th>商品图片</th>
+					<th>商品原价</th>
+					<th>商品拼团价</th>
+					<th>单次最低量</th>
+					<th>满团数量</th>
+					<th>支持城市</th>
+					<th>添加时间</th>
+					<th>操作</th>
+				</tr>
+			<tbody>
+			<volist name="data" id="val">
+			<tr class="text-c" id="info{$val.id}">
+				<td>{$val.gname}</td>
+				<td><a target="_balck" href="{$val.gimg}"><img src="{$val.gimg}" width="25" height="25"></a></td>
+				<td>{$val.gprice}</td>
+				
+				<td>{$val.gteam_price}</td>
+				<td class="xy">{$val.gpay_limit}</td>
+			 	<td>{$val.gnum}</td>
+			 	<td>{$val.gcity}</td>
+				<td>{$val['gaddtime']}</td>
+				<td class="f-14 td-manage">
+				<a href="javascript:;" onclick="up_goods_supply_status({$val.id},2)">通过审核</a> 
+				<a href="javascript:;" onclick="up_goods_supply_status({$val.id},0)">驳回审核</a> 
+				</td>
+			</tr>
+			</volist>
+			</tbody>
+		</table>
+		<div id="page">{$page}</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script type="text/javascript">
+function subExport(){
+	$('input[name=state]').val(1);
+}
+function kuaidi(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+function up_goods_supply_status(id,status){
+	layer.confirm('确定该操作吗？', {icon: 3, title:'提示'}, function(index){
+		var ajaxData = {
+			url:"{:U('GoodsSupply/up_goods_supply_status')}",type:'post',dataType:'json',data:{id:id,gstatus:status},
+			beforeSend:function(data){layer.load(2)},
+			success:function(data){
+				layer.closeAll();
+				if(data.status == 1) setTimeout('location.reload()',2000);
+				layer.msg(data.msg);
+			}
+		};
+		$.ajax(ajaxData);
+	});
+}
+</script>
+</body>
+
+</html>

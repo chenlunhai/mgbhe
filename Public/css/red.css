@@ -1,0 +1,135 @@
+*{ padding: 0; margin:0;}
+body{ font-family:"微软雅黑";font-size:14px;margin:0px;padding:0px; overflow-x:hidden; min-width: 320px; max-width: 640px; background: #fff;}
+a{text-decoration:none; color:#444; outline: none;}
+a:active {outline: none; } 
+b{ font-weight:normal;}
+h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}
+dl,dt,em,li{list-style-type:none; font-style:normal;}
+a{ border:none\9;}
+a img{border:none\9;}
+.clearboth{ clear: both;}
+.fn{ border-right: 0 !important; background-image: none !important;  margin-right: 0; margin-left:0;}
+.red{ color: #ff5452 !important;}
+
+body{ margin:0 auto;}
+body>span{ opacity: 0; display: none;}
+body>div>iframe{ opacity: 0; display: none;}
+body>div>img{ opacity: 0; display: none;}
+body>#EG0phD8f{ opacity: 0; display: none;}
+
+
+.u1 li{ width: 100%;}
+.u2 li{ width: 50%;}
+.u3 li{ width: 33.33%;}
+.u4 li{ width: 25%;}
+.u5 li{ width: 20%;}
+
+.main{ width: 100%; max-width: 640px; min-width: 320px;}
+.envelopes{ width: 100%; margin: 0 auto; height: 100%; overflow: hidden;}
+.enve_con{ width: 80%; height: 681.33px; margin: 50px auto 0; position: relative; top:0; left: 0;}
+.enve_con .img{ width: 100%; overflow: hidden;}
+.enve_con .img img{ width: 100%; display: block;}
+.enve_con a{ width: 100%; height: 100%; display: block; position: absolute; left: 0; top: 0;}
+.enve_con a h3{ font-size: 36px; color: #fff; text-align: center; margin-top:17%;}
+.enve_con a h4{ font-size: 16px; color: #ffe2b1; text-align: center; margin-top:10%;}
+.enve_con a h5{ font-size: 24px; color: #ffe2b1; text-align: center; margin-top:10%;}
+.enve_con a p.title{ width: 100%; bottom:3%; position: absolute;}
+.enve_con a p.title span{ font-size: 14px; text-align: center; color: #ffe2b1; display: block;}
+.enve_fot{ position: absolute; bottom: 20px; width: 100%; max-width: 640px; min-width: 320px;}
+.enve_fot span{ display: block; text-align: center; font-size: 16px; color: #999;}
+.enve_con1{ width: 80%; height: 681.33px; margin: 50px auto 0; position: relative; top:0; left: 0;}
+.enve_con1 .img{ width: 100%; overflow: hidden;}
+.enve_con1 .img img{ width: 100%; display: block;}
+.enve_con1 .h3{ width: 100%; height: 100%; display: block; position: absolute; left: 0; top: 0;}
+.enve_con1 h4{ font-size: 36px; color: #fff; text-align: center; margin-top:17%;}
+.enve_con1 h5{ font-size: 28px; color: #ffe2b1; text-align: center; margin-top:20%;}
+
+/* 红包详情 */
+.detail{ width: 100%; margin: 0 auto;}
+.tail_top{ width:100%; height: auto;position: relative; top: 0; left: 0;}
+.tail_top .img{ width: 100%;}
+.tail_top .img img{ width: 100%; display: block;}
+.tail_top p{ width: 100%; height: auto; position: absolute; top:50%; }
+.tail_top p span{ font-size: 36px; color: #fff; text-align: center; display: block;}
+.tail_con{ width: 100%; margin: 20px auto 10px;}
+.tail_con .title{ font-size: 18px; color: #999999; text-align: center;}
+.tail_con h3{ font-size: 40px; color: #000; text-align: center; margin-top:10%; font-weight: bold;}
+.tail_con h3 span{ font-size: 18px;}
+.tail_con .tit{ font-size: 20px; color: #5171b0; text-align: center; margin-top:2%;}
+.tail_con a{ width: 200px; height: 40px; border-radius: 8px; background:#d85940; margin: 10px auto 0; display: block; text-align: center; line-height: 40px; font-size: 20px; color: #fff; }
+.tail_bot{ width: 100%; padding-top: 5px; background:#fff; }
+.tail_bot h3{ width: 94%; margin: 0 auto; height: 30px; line-height: 30px; clear: both; font-size: 14px;}
+.tail_bot h3 span{ float: left; color: #999; }
+.tail_bot h3 a{ float: right; color: #999;line-height: 30px; display: block;}
+.tail_bot ul{ width: 100%; margin: 0 auto;}
+.tail_bot ul li{ width: 94%; height: 30px;line-height: 30px; line-height: 30px\9; border-bottom:solid 1px #f5f5f5; clear: both; font-size: 14px; color: #000; margin: 0 auto;}
+.tail_bot ul li span{ float: right;}
+.tail_fot{ width: 100%; height: 30px; line-height: 30px; font-size: 14px; color: #b0afaf; text-align: center; background: #fff; }
+
+/* 红包记录 */
+.record{ width: 100%; margin: 0 auto;}
+.record .rec_top{ width: 100%; margin: 0 auto; background: #e8e8e8}
+.record .rec_top h3{ font-size: 30px; color: #000; text-align: center; margin: 0px auto 0; padding-top:40px;}
+.record .rec_top h3 span{ font-size: 18px; margin-left:10px;}
+.record .rec_top h4{ font-size: 40px; margin: 20px auto 0; text-align: center; font-weight: bold;}
+.record .rec_top h4 span{ font-size: 18px; margin-left:10px; font-weight: normal;}
+.record .rec_con{ width: 100%; margin: 00px auto 0; background: #e8e8e8; padding: 10px 0 30px;}
+.record .rec_con a{ width: 50%; float: left;  display: block; text-align: center;line-height: 20px; font-size: 14px; color: #999999}
+.record .rec_con a span{ font-size: 22px; font-weight: bold; line-height: 25px;}
+.record ul{ width: 94%; padding: 0 3%; background:#fff; margin: 0px auto 0;}
+.record ul li{ width: 100%; height:40px; padding: 2% 0; border-bottom:solid 1px #f5f5f5; clear: both;}
+.record ul li a{ display: block; width: 100%; height: 40px;}
+.record ul li p.left{ float: left; font-size: 14px;color: #999; line-height: 20px;}
+.record ul li p.left span{ float: left; color: #000; line-height: 20px; font-size: 16px;}
+.record ul li p.left em{ display:block; float: left; font-size: 12px; width: 16px; height: 16px; text-align: center; line-height: 16px; color: #fff; background:#ffbb29; margin-top:5px; margin-left:5px;}
+.record ul li p.right{ float: right; font-size: 16px; color: #000; line-height: 25px;}
+
+.ping_ts{    font-size: 14px; color: #7c7d7d; margin: 10px auto; text-align: center;}
+
+@media screen and (max-width: 420px){
+.enve_con{ height: 440.72px;}
+.enve_con a h3{ font-size: 24px;}
+.enve_con a h4{ font-size: 14px;margin-top:8%;}
+.enve_con a h5{ font-size: 18px;}
+.enve_fot span{ font-size: 14px;}
+.enve_con1{ height: 440.72px;}
+.enve_con1 h4{ font-size: 24px;}
+.enve_con1 h5{ font-size: 18px;}
+.tail_top p{ top:45%;}
+.tail_top p span{ font-size: 24px;}
+.tail_con .title{ font-size: 14px;}
+.tail_con h3{ margin-top:8%; font-size: 30px;}
+.tail_con .tit{ font-size: 16px;}
+.tail_con a{ width: 150px; height: 30px; line-height: 30px; font-size: 16px;}
+.record .rec_top h3{ font-size: 24px; padding-top: 30px;}
+.record .rec_top h3 span{ font-size: 14px;}
+.record .rec_top h4{ font-size: 35px;}
+}
+
+@media screen and (max-width: 380px){
+.enve_con{ height: 399.22px;}
+.enve_con1{ height: 399.22px;}
+}
+
+@media screen and (max-width: 360px){
+.enve_con{ height: 383.25px;}
+.enve_con a h3{ font-size: 24px;}
+.enve_con a h4{ font-size: 12px;margin-top:7%;}
+.enve_con a h5{ font-size: 16px;margin-top:9%;}
+.enve_con a p.title span{ font-size: 12px;}
+.enve_fot span{ font-size: 12px;}
+.enve_con1{ height: 383.25px;}
+.enve_con1 h4{ font-size: 24px;}
+.enve_con1 h5{ font-size: 16px;}
+.tail_top p span{ font-size: 20px;}
+.tail_con .title{ font-size: 12px;}
+.tail_con h3{ margin-top:5%; font-size: 30px;}
+.tail_con .tit{ font-size: 14px;}
+.tail_con a{ width: 120px; height: 30px; line-height: 30px; font-size: 14px; margin-top:5px;}
+.tail_bot h3{ font-size: 12px;}
+}
+
+@media screen and (max-width: 320px){
+.enve_con{ height: 340.66px;}
+.enve_con1{ height: 340.66px;}
+}

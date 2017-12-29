@@ -1,0 +1,50 @@
+<header class="navbar-wrapper">
+	<div class="navbar navbar-fixed-top">
+		<div class="container-fluid cl"> <a class="logo navbar-logo f-l mr-10 hidden-xs" href="main.php">会员电子化管理系统</a>  <span class="logo navbar-slogan f-l mr-10 hidden-xs"></span> <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
+			<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
+				<ul class="cl">
+					<li>管理员</li>
+					<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">{$admin_info.adminname} <i class="Hui-iconfont">&#xe6d5;</i></a>
+						<ul class="dropDown-menu menu radius box-shadow">
+						  <li><a href="{:U('Login/logout')}">安全退出</a></li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+</header>
+
+<aside class="Hui-aside">
+	<input runat="server" id="divScrollValue" type="hidden" value="" />
+	<div class="menu_dropdown bk_2">
+		 
+		<dl id="menu-article">
+			<dt><em class="m_cn"><img src="__PUBLIC__/admin/images/x_md.png"></em> <strong>店主管理</strong><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd style="display: block;">
+				<ul>
+                    <li><a _href="{:U('Shop/shoplist')}" data-title="店主列表" href="javascript:void(0)"><div class="img"><img src="__PUBLIC__/admin/images/x_01.png"></div>店主列表</a></li>
+                    <li><a _href="{:U('Shop/shop_register_list')}" data-title="店主申请列表" href="javascript:void(0)"><div class="img"><img src="__PUBLIC__/admin/images/x_02.png"></div>店主申请列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-article">
+			<dt><em class="m_cn"><img src="__PUBLIC__/admin/images/x_yh.png"></em> <strong>用户管理</strong><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd style="display: block;">
+				<ul>
+                    <li><a _href="{:U('User/index')}" data-title="用户列表" href="javascript:void(0)"><div class="img"><img src="__PUBLIC__/admin/images/x_06.png"></div>用户列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-article">
+			<dt><em class="m_cn"><img src="__PUBLIC__/admin/images/x_yh.png"></em> <strong>供货商商品管理</strong><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd style="display: block;">
+				<ul>
+                    <li><a _href="{:U('GoodsSupply/goods_list')}" data-title="供货商商品列表" href="javascript:void(0)"><div class="img"><img src="__PUBLIC__/admin/images/x_06.png"></div>供货商商品列表</a></li>
+                    <li><a _href="{:U('GoodsSupply/goods_status_list')}" data-title="供货商商品审核" href="javascript:void(0)"><div class="img"><img src="__PUBLIC__/admin/images/x_06.png"></div>供货商商品审核</a></li>
+				</ul>
+			</dd>
+		</dl>
+	</div>
+
+</aside>

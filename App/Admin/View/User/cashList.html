@@ -1,0 +1,132 @@
+<include file="Public/head"/>
+<title>资讯列表</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 提现记录 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">	
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+
+	<div class="mt-20">
+	<div class="text-c" style="margin-top:10px;">
+	    <table cellpadding="3" cellspacing="0" class="table_98">
+			 <form  method="post" id="form1">
+			  <tbody>
+			  <tr>
+				<td>
+			  	用户ID：<input type="text" name="push_sn" value="{$assign.push_sn}" class="btn">
+				用户账号：<input type="text" name="mobile" value="{$assign.mobile}" class="btn">
+				审核状态：<select name="status" id="">
+					<option value="-1">请选择</option>
+					<option value="0" <if condition="0 eq $assign['status']">selected</if>>未审核</option>
+					<option value="1" <if condition="1 eq $assign['status']">selected</if>>已通过</option>
+					<option value="2" <if condition="2 eq $assign['status']">selected</if>>未通过</option>
+				</select>
+				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找" onclick="$('input[name=state]').val(0)">
+				<input type="hidden" name="state" value="0">
+				<input class="btn btn-success" type="submit" value="导出" onclick="subExport()"> 
+				</td>
+			  </tr>
+		  	  </tbody>
+		  	  </form>
+		</table>
+	</div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+				 
+					<th>用户ID</th>
+					<th>用户账号</th>
+					<th>开户银行</th>
+					<th>开户支行</th>
+					<th>开户姓名</th>
+					<th>提现卡号</th>
+					<th>提现金额</th>
+					<th>手续费</th>
+					<th>打款金额</th>
+					<th>提现状态</th>
+					<th>提现时间</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="data" id="val">
+			<tr class="text-c">
+				<td>{$val.push_sn}</td>
+				<td>{$val.mobile}</td>
+				<td>{:getBankInfo($val['account'],0)}</td>
+				<td>{:getBankInfo($val['account'],1)}</td>
+				<td>{:getBankInfo($val['account'],2)}</td>
+				<td>{:getBankInfo($val['account'],3)}</td>
+				<td>{$val.money}</td>
+				<td>{:turnDecimal($val['money'] * C('CASH_FEE'))}</td>
+				<td>{:turnDecimal($val['money'] - $val['money'] * C('CASH_FEE'))}</td>
+				<td>{:getCashStatus($val['state'])}</td>
+				<td>{:turnTime($val['addtime'])}</td>
+				<td class="f-14 td-manage">
+					<if condition="$val['state'] eq 0">
+						<a href="javascript:;" onClick="onCash({$val.id},1)">审核通过</a>&nbsp;&nbsp;
+						<a href="javascript:;" onClick="onCash({$val.id},2)">审核不通过</a>
+					<else/>
+						{:getCashStatus($val['status'])} <br>
+						处理时间：{:turnTime($val['suretime'])}
+					</if>
+				</td>
+			</tr>
+			</volist>
+			
+			</tbody>
+
+		</table>
+		<div id="page">{$page}</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script type="text/javascript">
+function subExport(){
+	$('input[name=state]').val(1);
+}
+function onCash(id,i){
+	if(i==1){
+		layer.prompt(function(val, index){
+		  upCash(id,1,val);
+		});
+	}
+ 	if(i==2){
+ 		layer.confirm('确定该操作吗？', {
+		  btn: ['确定','取消'] //可以无限个按钮
+		  ,btn1: function(index, layero){
+		    upCash(id,i,0);
+		  }
+		});
+ 	}
+}
+function upCash(id,i,r){
+	var icon = 2;
+	$.ajax({
+		url:'{:U("User/cashAction")}',
+		type:'post',
+		dataType:'json',
+		data:{id:id,i:i,r:r},
+		success:function(data){
+			if(data.status==1) icon = 1;
+			layer.msg(data.msg, {
+			   icon: icon,
+			   shade: 0.5,
+			   time: 2000
+			});
+			setTimeout('location.reload();',2000);
+		}
+	})
+}
+function kuaidi(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('.table-sort').dataTable();
+	})
+</script>
+</body>
+</html>

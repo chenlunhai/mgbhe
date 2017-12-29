@@ -1,0 +1,61 @@
+<include file="Public/head"/>
+<title>资讯列表</title>
+<style type="text/css">
+table{ width: 100%; border-top:solid 1px #ccc; border-left: solid 1px #ccc; margin:10px auto;}
+table tr td{ height: 30px; line-height: 30px; border-right: solid 1px #ccc; border-bottom:solid 1px #ccc;}
+table tr td.bt{ font-size: 14px;color: #444; text-align: center; background: #f5f5f5;}
+table tr td.cen{ font-size: 14px; color: #666; text-align: center;}
+</style>
+</head>
+<body>
+
+<article class="page-container">
+	<form action="" target="nm_iframe" method="post" class="form form-horizontal" id="form-admin-add">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<tr>
+				<td class="bt">用户id</td><td class="cen">{$user.id}</td>
+				<td class="bt">姓名</td><td class="cen">{$user.realname}</td>
+				<td class="bt">昵称</td><td class="cen">{$user.nickname}</td>
+			</tr>
+			<tr>
+				<td class="bt">手机号码</td><td class="cen">{$user.mobile}</td>
+				<td class="bt">注册时间</td><td class="cen">{$user.addtime}</td>
+				<td class="bt">省-市-区</td><td class="cen">{$user.province}-{$user.city}-{$user.region}</td>
+			</tr>
+			<tr>
+				<td class="bt">开户行-开户支行</td><td class="cen">{$user.bank_user}-{$user.bank_address}</td>
+				<td class="bt">开户卡号</td><td class="cen">{$user.bank_card}</td>
+				<td class="bt">开户姓名</td><td class="cen">{$user.bank_name}</td>
+			</tr>
+		</table>
+		<input type="hidden" name="uid" value="{$user.id}">
+		<iframe   name="nm_iframe" style="display:none;"></iframe>
+	</form>
+</article>
+<include file="Public/js"/>
+<script type="text/javascript">
+function info(data){
+	layer.msg(data.msg, {
+	   icon: data.status,
+	   shade: 0.5,
+	   time: 2000
+	});
+	$('#subbtn').val(data.msg);
+	if(data.status==1){
+		setTimeout('parent.layer.closeAll()',2000);
+		setTimeout('parent.location.reload()',2000);
+	}
+}
+
+function subData (obj) {
+	$('#subbtn').val('正在处理...').attr('onclick','');
+	$('form').submit();
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('.table-sort').dataTable();
+	})
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="-1" http-equiv="Expires">           
+<meta content="no-cache" http-equiv="Cache-Control">           
+<meta content="no-cache" http-equiv="Pragma">
+<meta name = "format-detection" content = "telephone=no">
+<title>订单详情</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/group.css">
+</head>
+<body style="background:#f2f2f2;">
+<div class="main">
+  <div class="details">
+    <div class="deta_top">
+      <h3>
+        <p class="title">{:getTradeStatus($data["trade"])}</p>
+        <p class="tit">订单金额：￥{$data["pay_price"]}</p>
+      </h3>
+    </div>
+    <div class="deta_add">
+      <h3>
+        <p class="title">{$data["realname"]} {$data["mobile"]}</p>
+        <p class="tit">{$data["province"]} {$data["city"]} {$data["country"]}  {$data["address"]}</p>
+      </h3>
+    </div>
+    <div class="deta_con">
+      <h3><img src="__PUBLIC__/images/p_sd.png"><span>商品</span></h3>
+      <ul>
+        <li>
+          <div class="img"><img src="{$data['gimg']}"></div>
+          <div class="title">{$data['gname']}</div>
+          <div class="tit">￥{$data['gteam_price']}/件<br>X {$data['pay_num']}</div>
+        </li>
+      </ul>
+      <h4>共{$data['pay_num']}件商品  合计 ￥<span>{$data['pay_price']}</span></h4>
+    </div>
+    <div class="deta_bot">
+      <ul>
+        <li><span>订单编号：</span>{$data['osn']}</li>
+        <li><span>创建时间：</span>{$data['addtime']}</li>
+        <li><span>支付时间：</span>{$data['paytime']}</li>
+      </ul>
+    </div>
+    <div class="deta_fot">
+      <if condition="$data['trade'] gt 0 AND $data['trade'] lt 4">
+        <!-- <a href="javascript:;">申请退款</a> -->
+      </if>
+      <EQ name="data.trade" value="4"> <a href="javascript:;">退款中</a> </EQ>
+      <EQ name="data.trade" value="5"> <a href="javascript:;">完成退款</a> </EQ>
+      <!-- 4(退款中)5(完成退款) -->
+    </div>
+  </div>
+  <!-- 底部footer -->
+  
+</div>
+
+
+<include file="Public/js" />
+
+
+</body>
+</html>
+

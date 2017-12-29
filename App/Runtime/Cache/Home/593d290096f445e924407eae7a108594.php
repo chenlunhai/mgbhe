@@ -1,0 +1,125 @@
+<?php if (!defined('THINK_PATH')) exit();?><!doctype html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta content="-1" http-equiv="Expires">           
+<meta content="no-cache" http-equiv="Cache-Control">           
+<meta content="no-cache" http-equiv="Pragma">
+<meta name = "format-detection" content = "telephone=no">
+<title>红包详情</title>
+<link rel="stylesheet" type="text/css" href="/Public/css/red.css">
+<style>
+html{ height: 100%;}
+</style>
+</head>
+<body style="background:#f2f2f2;">
+<div class="main">
+  <div class="detail">
+    <div class="tail_top">
+      <div class="img"><img src="/Public/images/red_03.png"></div>
+      <p><span><?php echo ($data["realname"]); ?></span></p>
+    </div>
+    <div class="tail_con">
+      <div class="title">分享拼团抢现金红包</div>
+      <h3><?php echo ($data["user_money"]); ?><span>元</span></h3>
+      <div class="tit">已存入余额，下载麦光宝app可直接提现</div>
+      <a href="javascript:;">去提现</a>
+    </div>
+    <div class="tail_bot">
+      <h3><span>已领取<?php echo ($data["cnum"]); ?>/<?php echo ($data["num"]); ?>个，共<?php echo ($data["cmoney"]); ?>/<?php echo ($data["money"]); ?>元</span><a href="javascript:;">红包记录</a></h3>
+      <ul>
+        <!-- <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li>
+        <li>张三<span>0.15元</span></li> -->
+      </ul>
+      
+    </div>
+    <div class="ping_ts"><!-- 暂无更多数据... --></div>
+    <div class="tail_fot"><span>红包7天内有效，未抢完的红包7天后失效。</span></div>
+  </div>
+  <!-- 底部footer -->
+  
+</div>
+
+
+<!-- <script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/layer.js"></script> -->
+<script type="text/javascript" src="/Public/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/js/layer.js"></script>
+<script type="text/javascript" src="/Public/js/function.js"></script>
+
+
+
+<script type="text/javascript">
+var w = $(window);
+var kk = true;
+var pagecount = 0;
+var page = 1;
+var token = "<?php echo ($token); ?>";
+window.onscroll = function()
+{
+  var scrollh = $(document).height();
+  scrollh = scrollh-36;
+  var c=document.documentElement.clientHeight || document.body.clientHeight, t=$(document).scrollTop();
+  if(kk != false && (t + w.height()) >= scrollh){
+    kk=false;
+    page++;
+    loadNews();
+  }
+}
+
+loadNews();
+
+function loadNews(){
+
+  var index = layer.load(2);
+  var ajaxData = {
+    url:"<?php echo U('Order/envelopes_details');?>",type:'post',dataType:'json',
+    data:{page:page,token:token},
+    beforeSend:function(data){ layer.load(2) },
+    success:function(data){
+      layer.closeAll();
+      if(data.status==1){
+        var info = data.data;
+        var len  = info.length;
+
+        var html = '';
+        for(var key in info){
+        
+          html += '<li>';
+          html += info[key]['realname']+'<span>'+info[key]['money']+'元</span>'
+          html += '</li>';
+
+        }
+        $('div.tail_bot').find('ul').append(html);
+        
+        if(page==1 && len==0){ kk = false; $('.ping_ts').html('暂无数据'); }
+        else{
+          if(len<6){
+            kk = false; $('.ping_ts').html('没有更多...');
+          }else{
+            kk=true; $('.ping_ts').html('下拉加载更多...');
+          }
+        }
+      }else{
+        kk=false; $('.ping_ts').html('没有更多...');
+      }
+    }
+  };
+   
+  $.ajax(ajaxData);
+}
+</script>
+
+</body>
+</html>

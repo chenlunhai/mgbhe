@@ -1,0 +1,96 @@
+<include file="Public/head"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/H-ui.admin.css" />
+<title>资讯列表</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 快递订单 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">	
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+
+	<div class="mt-20">
+	<div class="text-c" style="margin-top:10px;">
+	    <table cellpadding="3" cellspacing="0" class="table_98">
+			 <form  method="post" id="form1">
+			  <tbody>
+			  <tr>
+				<td>
+			  
+				手机号码：<input type="text" name="account" value="{$assign['account']}" class="btn">
+				 
+				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找" onclick="$('input[name=state]').val(0)">
+				<input type="hidden" name="state" value="0">
+				<!-- <input class="btn btn-success" type="submit" value="导出" onclick="subExport()">  -->
+				</td>
+			  </tr>
+		  	  </tbody>
+		  	  </form>
+		</table>
+	</div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+					<th>电话</th>
+					<th>推荐人</th>
+					<th>用户等级</th>
+					<th>代理等级</th>
+					<th>真实姓名</th>
+					<th>注册区域</th>
+				 	<th>注册时间</th>
+				 	<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="user" id="val">
+			<tr class="text-c" id="info{$val.id}">
+				<td>{$val.mobile}</td>
+				<td>{:getUserMobile($val['pid'])}</td>
+				<td>{:getGradeName($val['grade'])}</td>
+				<td>{:getAgentGradeName($val)}</td>
+				<td>{$val.realname}</td>
+				<td>{$val.province}{$val.city}{$val.region}</td>
+				<td>{:turnTime($val['addtime'])}</td>
+				<td><a href="javascript:;" onclick="sub_shop({$val.id})">激活为商家</a></td>
+			</tr>
+			</volist>
+			</tbody>
+
+		</table>
+		<div id="page">{$page}</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script type="text/javascript">
+function subExport(){
+	$('input[name=state]').val(1);
+}
+function sub_shop(id){
+layer.confirm('确定该操作吗？', {icon: 3, title:'提示'}, function(index){
+	var icon = 2;
+	$.ajax({
+    	url:'{:U("User/up_user_shop_status")}',
+    	type:'post',
+    	dataType:'json',
+    	data:{id:id},
+    	beforeSend:function(data){layer.load(2)},
+    	success:function(data){
+    		layer.closeAll();
+    		if(data.status == 1){
+    			$('#info'+id).remove();
+    		}
+    		layer.msg(data.msg, {icon: data.status,shade: 0.5,time: 2000});
+			
+		}
+	    	 
+    })
+})
+}
+function kuaidi(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+</script>
+
+</body>
+</html>

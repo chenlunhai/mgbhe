@@ -1,0 +1,124 @@
+<include file="Public/head"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/icheck.css" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/admin/css/H-ui.admin.css" />
+<title>资讯列表</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 财富积分兑换列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">	
+
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+
+	<div class="mt-20">
+	<div class="text-c" style="margin-top:10px;">
+	    <table cellpadding="3" cellspacing="0" class="table_98">
+			 <form  method="post" id="form1">
+			  <tbody>
+			  <tr>
+				<td>
+			 
+<!-- 				余额范围：<input type="text" name="minbalance" value="{$assign['minbalance']}" class="btn" placeholder="最小余额">-<input type="text" name="maxbalance" value="{$assign['maxbalance']}" class="btn" placeholder="最大余额">
+				用户昵称：<input type="text" name="nickname" value="{$assign['nickname']}" class="btn">
+				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找" onclick="$('input[name=state]').val(0)">
+				<input type="hidden" name="state" value="0">
+				<input class="btn btn-success" type="submit" value="导出" onclick="subExport()"> -->
+				</td>
+			  </tr>
+		  	  </tbody>
+		  	  </form>
+		</table>
+	</div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+			<thead>
+				<tr class="text-c">
+				 
+					 
+					<th>手机号</th>
+					<th>数钜宝账号</th>
+					<th>兑换金额</th>
+					<th>申请时间</th>
+					<th>处理状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+			<volist name="user" id="val">
+			<tr class="text-c">
+			 
+				 
+				<td>{:getUserMobile($val['uid'])}</td>
+				<td>{$val.account}</td>
+				<td>{$val.money}</td>
+				<td>{$val.addtime}</td>
+				 
+				<td>{:getStatus($val['state'])}</td>
+				<td class="f-14 td-manage">
+					<if condition="$val['state'] eq 0">
+						<a href="javascript:;" onClick="onCash({$val.id},1)">审核通过</a>&nbsp;&nbsp;
+						<a href="javascript:;" onClick="onCash({$val.id},2)">审核不通过</a>
+					<else/>
+						{$val.remark} <br>
+						处理时间：{$val.suretime}
+					</if>
+				</td>
+			</tr>
+			</volist>
+			
+			</tbody>
+
+		</table>
+		<div id="page">{$page}</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script type="text/javascript">
+function subExport(){
+	$('input[name=state]').val(1);
+}
+function onCash(id,i){
+	if(i==2){
+		layer.prompt(function(val, index){
+		  upCash(id,2,val);
+		});
+	}
+ 	if(i==1){
+ 		layer.confirm('确定该操作吗？', {
+		  btn: ['确定','取消'] //可以无限个按钮
+		  ,btn1: function(index, layero){
+		    upCash(id,1,0);
+		  }
+		});
+ 	}
+}
+function upCash(id,i,r){
+	var icon = 2;
+	$.ajax({
+		url:'{:U("User/up_wealth_integral_record")}',
+		type:'post',
+		dataType:'json',
+		data:{id:id,state:i,remark:r},
+		beforeSend:function(data){layer.load(2)},
+		success:function(data){
+			layer.closeAll();
+			if(data.status==1) icon = 1;
+			layer.msg(data.msg, {
+			   icon: icon,
+			   shade: 0.5,
+			   time: 2000
+			});
+			setTimeout('location.reload();',2000);
+		}
+	})
+}
+function kuaidi(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+</script>
+<script type="text/javascript">
+	$(function(){
+		$('.table-sort').dataTable();
+	})
+</script>
+</body>
+</html>
