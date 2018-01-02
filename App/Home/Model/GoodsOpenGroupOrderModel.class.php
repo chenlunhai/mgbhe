@@ -117,7 +117,6 @@ class GoodsOpenGroupOrderModel extends Model{
 
             $order = $this->where(['osn'=>$data['order_sn'],'pay_price'=>$data['total_fee'],'pay_status'=>0])->field('osn,uid,out_trade_type,pay_price,id,pay_num,grid')->find();
             if(empty($order)) throw new Exception("订单不存在或已支付", 11010);
-
             #得到拼团商品信息
             $goods = M('goods_open_group')->where(['id'=>$order['grid']])->field('gpay_num,gnum,gpay_limit')->find();
             $num = $goods['gnum'] - $goods['gpay_num']; #当前可购买数量
@@ -256,19 +255,27 @@ class GoodsOpenGroupOrderModel extends Model{
             if(isset($check_res['status'])) throw new Exception($check_res['msg'],11000);
 
             $order= $this->where(['id'=>$data['id'],'uid'=>$data['uid'],'trade'=>2])->field('osn,did,pay_price')->find();
-            $supply_money=M('user_estate')->where(['id'=>$order['did']])->field('supply_money')->find();
+            $supply_money=M('user_estate')->where(['id'=>$order['did']])->field('supply_money,total_supply_money')->find();
             $did=$order['did'];
             $osn=$order['osn'];
             $state=0;
-            $money=$order['pay_price']-$order['pay_price']*0.05;
-            $fee=$order['pay_price']*0.05;
-            $cmoney=$supply_money['supply_money']+$money;
+            /**供应商订单收入= 订单总额*0.2-订单总额*0.006;
+             * 每次确定收货 货款数额(supply_money)=原有的数额+订单金额
+             *货款总额=原有货款总额+订单金额-手续费
+             * 修改2018-01-0217:31
+             */
+            #此处感觉不对
+           $feeMoney=$supply_money['supply_money']+$order['pay_price']*0.2-$order['pay_price']*0.006;
+           // $feeMoney=$order['pay_price']*0.2-$order['pay_price']*0.006;
+            $money=$order['pay_price']*0.2-$order['pay_price']*0.006;
+            $fee=$order['pay_price']*0.006;
+            $cmoney=$supply_money['total_supply_money']+$money;
             $in = [	#写入记录
                 'did'=>$did,'osn'=> $osn,'state'=>$state,'money'=>$money,'cmoney'=>$cmoney,'fee'=>$fee];
             $Model = new Model();
             $Model->startTrans();
             $supply=$Model->table('__SUPPLY_MONEY_RECORD__')->add($in);
-            $updae_user_estate=M('user_estate')->where(['id'=>$did])->save(['supply_money'=>$money,'total_supply_money'=>$cmoney]);
+            $updae_user_estate=M('user_estate')->where(['id'=>$did])->save(['supply_money'=>$feeMoney,'total_supply_money'=>$cmoney]);
             if(!$updae_user_estate) throw new Exception("更新商家信息失败", 20000);
             if(!$supply) throw new Exception("写入订单失败", 20000);
             $Model->commit();

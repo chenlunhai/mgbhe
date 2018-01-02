@@ -17,6 +17,7 @@ use Home\Model\UserEstateModel;
 use Common\Service\LogService;
 use Think\Exception;
 use Think\Model;
+
 class MoneyController extends SeachController
 {
     /**
@@ -38,11 +39,19 @@ class MoneyController extends SeachController
         #查询数据
         $Model = M('supply_money_record');
         if (empty($post)) {
-            $data = $Model->field('id,did,osn,state,money,cmoney,fee,addtime')->order('id desc')->limit($limit)->select();
+            $data = $Model->where(['state' => 0])->field('id,did,osn,state,money,cmoney,fee,addtime')->order('id desc')->limit($limit)->select();
         } else {
-            $condition['state'] = $post['state'];
-            $time = $post['stime'] . ',' . $post['dtime'];
-            $condition['addtime'] = array('between', $time);
+            $condition['state'] = 0;
+            if (!empty($post['order_sn'])) {
+                $condition['order_sn'] = $post['order_sn'];
+            }
+            if (!empty($post['stime']) && !empty($post['dtime'])) {
+
+                $time = $post['stime'] . ',' . $post['dtime'];
+                $condition['addtime'] = array('between', $time);
+            }
+
+
             $data = $Model->where($condition)->field('id,did,osn,state,money,cmoney,fee,addtime')->order('id desc')->limit($limit)->select();
         }
 
@@ -65,7 +74,7 @@ class MoneyController extends SeachController
     public function gtcash()
     {
         $Model = new UserEstateModel();
-        $supply_money = $Model->where(['id' => parent::$adminid])->field('supply_money')->find();
+        $supply_money = $Model->where(['id' => parent::$adminid])->field('supply_money,total_supply_money')->find();
         $user_model = new UserAccountModel();
         $useraccount = $user_model->where(['id' => parent::$adminid])->field('realname,mobile,bank_address,bank_card')->find();
         $carNumber = $useraccount['bank_card'];
@@ -81,6 +90,8 @@ class MoneyController extends SeachController
      *ajax 提交提现写入记录表
      * post.cash 提现金额，后期在扩展支付宝选项
      * time：2017-12-2911:04
+     * 更改2018-01-0217:35
+     *
      */
     public function cash()
     {
@@ -135,7 +146,7 @@ class MoneyController extends SeachController
 
 
         $post = I('post.');
-        var_dump($post);
+
         $seach = $this->seach();
         $where = $seach['where'];
         $did = parent::$adminid;
