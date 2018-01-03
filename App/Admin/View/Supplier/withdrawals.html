@@ -1,0 +1,105 @@
+<include file="Public/head"/>
+<title>供货商提现记录</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span>供货商提现记录 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">	
+	<div class="cl pd-5 bg-1 bk-gray mt-20">    <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+	<div class="mt-20">
+	<div class="text-c" style="margin-top:10px;">
+	    <table cellpadding="3" cellspacing="0" class="table_98">
+			 <form  method="post" id="form1">
+			  <tbody>
+			  <tr>
+				<td>
+				供货商：<input type="text" name="sname" value="{$assign['sname']}" style="width:100px" class="input-text">
+                时间：<input type="text" id="stime" style="width:100px" class="input-text" name="stime" size="20" value="{$assign['stime']}">
+                - <input type="text" id="dtime" style="width:100px" class="input-text" name="dtime" size="10" value="{$assign['dtime']}">
+				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找">
+				状态：<select name="state" class="s_select">
+                    <option value="" >请选择</option>
+                    <option value="0" <if condition="$assign['state'] eq '0'">selected</if>>未处理</option>
+                    <option value="1" <if condition="$assign['state'] eq 1">selected</if>>通过</option>
+                    <option value="2" <if condition="$assign['state'] eq 2">selected</if>>不通过</option>
+                </select>
+				<!-- <input type="hidden" name="state" value="0">
+                <input class="btn btn-success" type="submit" value="导出" onclick="subExport()"> -->
+				</td>
+			  </tr>
+		  	  </tbody>
+		  	  </form>
+		</table>
+	</div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+				<tr class="text-c">
+					<th>时间</th>
+					<th>供货商</th>
+					<th>提现账号</th>
+					<th>账号类型</th>
+					<th>提现金额</th>
+					<th>手续费</th>
+					<th>交易号</th>
+					<th>备注</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			<tbody>
+			<volist name="data" id="val">
+			<tr class="text-c" id="info{$val.id}">
+				<td>{$val.addtime}</td>
+				<td>{$val.shopname}</td>
+				<td>{$val.account}</td>
+				<td>{:getCashType($val['cash_type'])}</td>
+				<td>{$val.money}</td>
+				<td>{$val.fee}</td>
+				<td>{$val.out_trade_no}</td>
+				<td>{$val.remark}</td>
+				<th>{:getCashState($val['state'])}</th>
+				<td>
+					<if condition="$val['state'] eq 0"><a href="javascript:;" onClick="handle({$val.id})">通过</a>&nbsp;&nbsp;<a href="javascript:;" onClick="handle({$val.id}, 1)">不通过</a></if>
+				</td>
+			</tr>
+			</volist>
+			</tbody>
+		</table>
+		<div id="page">{$page}</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script src="__PUBLIC__/admin/js/laydate/laydate.js"></script>
+<script type="text/javascript">
+$(function(){
+    laydate({
+       elem: '#stime'
+    })
+    laydate({
+       elem: '#dtime'
+    })
+})
+function subExport(){
+	$('input[name=state]').val(0);
+}
+function kuaidi(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+function handle(id, undo){
+    layer.confirm('确定该操作吗？', {icon: 3, title:'提示'}, function(index){
+        var icon = 2;
+        $.ajax({
+            url:'{:U("Supplier/handle_withdrawal")}',
+            type:'post',
+            dataType:'json',
+            data:{id:id, state:undo},
+            beforeSend:function(data){layer.load(2)},
+            success:function(data){
+                layer.closeAll();
+                if(data.status == 1) setTimeout('location.reload()',2000);
+                layer.msg(data.msg, { icon: data.status, shade: 0.5, time: 2000 });
+            }
+        })
+    })
+}
+</script>
+</body>
+
+</html>

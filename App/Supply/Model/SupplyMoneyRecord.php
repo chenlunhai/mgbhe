@@ -9,9 +9,7 @@
 namespace Supply\Model;
 
 
-use Think\Model;
-
-class SupplyMoneyRecord extends Model
+class SupplyMoneyRecord
 {
 
 

@@ -68,7 +68,7 @@
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/layer.js"></script>
 <script type="text/javascript" src="/Public/js/function.js"></script>
-
+<script type="text/javascript" src="/Public/js/disable.js"></script>
 
 
  <script type="text/javascript" src="/Public/js/modal.js"></script>

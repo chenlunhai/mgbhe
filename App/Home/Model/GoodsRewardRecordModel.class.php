@@ -38,11 +38,8 @@ class GoodsRewardRecordModel extends Model{
 	 		$check_res = check_data($data,['grid']);
 			if(isset($check_res['status'])) throw new Exception($check_res['msg'],11000);
 	 		
-	 		
-
 	 		$order =  M('goods_open_group_order')->where(['grid'=>$data['grid'],'pay_status'=>1,'trade'=>['in','1,2,3']])->group('uid')->field('uid,pay_price')->order('paytime asc')->limit(3)->select();
 	 		if(empty($order)) throw new Exception("订单状态异常", 11010);
-	 		 
 	 	 	
 	 		$ratio = [0.03,0.02,0.01];
 	 		$in = [];
@@ -121,7 +118,7 @@ class GoodsRewardRecordModel extends Model{
 			$check = $this->where(['oid'=>$data['id'],'state'=>1])->count();
 			if($check > 0) throw new Exception('已计算奖金');
 
-			$uid =  M('goods_open_group')->where(['id'=>$data['grid']])->getField('uid');	#供货商用户id
+			$uid =  M('goods_open_group')->where(['id'=>$data['grid']])->getField('did');	#供货商用户id
 	 		if(empty($uid)) throw new Exception("该团不存在供货商");
 
 	 		$order =  M('goods_open_group_order')->where(['id'=>$data['id'],'pay_status'=>1,'trade'=>['in','1,2,3']])->field('uid,pay_price')->find();
@@ -134,8 +131,9 @@ class GoodsRewardRecordModel extends Model{
 	 		$in = [];
 	 		foreach ($ids as $k => $v) {
  				if($v < 1) continue;
- 				$in[] = ['uid'=>$v,'money'=>$money,'gid'=>$uid,'state'=>1,'ratio'=>self::$ratio,'mprice'=>$mprice,'oid'=>$data['id'],'grid'=>$data['grid']];
+ 				$in[] = ['uid'=>$v,'money'=>$money,'gid'=>$order['uid'],'state'=>1,'ratio'=>self::$ratio,'mprice'=>$mprice,'oid'=>$data['id'],'grid'=>$data['grid']];
  			}
+ 			 
  			if(empty($in)) throw new Exception("供货商推荐人为空");
  			
  			$inRes = $this->addAll($in);
@@ -164,27 +162,28 @@ class GoodsRewardRecordModel extends Model{
 			if(empty($order)) throw new Exception("订单状态异常", 11010);
 			
 			$mprice = turnDecimal($order['pay_price'] * self::$ratio);
-			$pmoney = turnDecimal($mprice * 0.05);
-			$cmoney = turnDecimal($mprice * 0.15);
+			$pmoney = turnDecimal($mprice * 0.05);	#省代奖励
+			$cmoney = turnDecimal($mprice * 0.15);	#市代奖励
 			
 			$User = M('user_account');
 			$Agent = M('agent_record');
 			$in = [];
 
 			if($pmoney > 0){	#计算省代奖金
-				$total_fee = $Agent->where(['province'=>$order['uprovince']])->getField('sum(money)');	#该省所交代理费
+				$total_fee = $Agent->where(['province'=>$order['uprovince'],'state'=>2])->getField('sum(money)');	#该省所交代理费
 				$province = $User->where(['a.province'=>$order['uprovince'],'e.agent_grade'=>2])->join('a left join  __USER_ESTATE__ e on a.id=e.id')->field('e.agent_fee,a.id')->select();
 				foreach ($province as $key => $value) {
 					$umoney = turnDecimal($value['agent_fee'] / $total_fee * $pmoney);
 					if($umoney < 0.01) continue;
 
-					$in[] = ['uid'=>$value['id'],'money'=>$umoney,'grid'=>$data['grid'],'oid'=>$data['id'],'gid'=>$order['uid'],'mprice'=>$mprice,'state'=>3];
+					$in[] = ['uid'=>$value['id'],'money'=>$umoney,'grid'=>$data['grid'],'oid'=>$data['id'],'gid'=>$order['uid'],'mprice'=>$mprice,'state'=>4];
 				}
 			}
-			
+			 
 			if($cmoney > 0){	#计算市代奖金
 				$total_fee = $Agent->where(['province'=>$order['uprovince'],'city'=>$order['ucity'],'state'=>1])->getField('sum(money)');	#该市所交代理费
 				$city = $User->where(['a.city'=>$order['ucity'],'e.agent_grade'=>1])->join('a left join  __USER_ESTATE__ e on a.id=e.id')->field('e.agent_fee,a.id')->select();
+
 				foreach ($city as $key => $value) {
 					$umoney = turnDecimal($value['agent_fee'] / $total_fee * $cmoney);
 					if($umoney < 0.01) continue;

@@ -12,6 +12,14 @@ function getLimit($size=6){
     $start    = ($p-1)*$size;
     return $start.','.$size;
 }
+/**
+ * 返回用户类型
+ */
+function getGrade($i)
+{
+    $arr = ['消费者','店家'];
+    return $arr[$i];
+}
 /* 转换实体 */
 function turnStr($str){
     $arr  = array('&amp;','&lt;','&gt;','&quot;');
@@ -128,4 +136,9 @@ function getFullUrl() {
     $path_info = isset($_SERVER['PATH_INFO']) ? $_SERVER['PATH_INFO'] : '';
     $relate_url = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : $php_self.(isset($_SERVER['QUERY_STRING']) ? '?'.$_SERVER['QUERY_STRING'] : $path_info);
     return $sys_protocal.(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '').$relate_url;
+}
+function getBankInfo($str,$i){
+    $new = explode(',',$str);
+    if($i=='-1') return $new;
+    return $new[$i];
 }

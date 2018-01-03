@@ -2,7 +2,7 @@
 define('BASE_ROOT',$_SERVER['DOCUMENT_ROOT']);
  
 return array(
-	'OBJECT_NAME' 	=> '麦光宝盒',
+	'OBJECT_NAME' 	=> '麦光宝',
 	'LOG_FILE' => BASE_ROOT.'/Data/Log/',
 	'CDS_URL'  => 'http://sjb.wlylai.com/',
 	'AREA_URL' => 'http://'.$_SERVER['HTTP_HOST'].'/Data/Json/area.json',

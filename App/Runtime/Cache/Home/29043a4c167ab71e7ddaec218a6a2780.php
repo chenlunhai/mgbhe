@@ -8,11 +8,11 @@
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <title>登录</title>
-<link rel="stylesheet" type="text/css" href="/mgbh/Public/css/login.css?v=2">
+<link rel="stylesheet" type="text/css" href="/Public/css/login.css?v=2">
 </head>
 <body style="background:#f0eff5">
 <div class="login">
-	<div class="login_top"><img src="/mgbh/Public/images/logo.png"></div>
+	<div class="login_top"><img src="/Public/images/logo.png"></div>
 	<div class="login_con">
 		<ul>
 	      <li><label class="zf"></label><input type="text" class="s_input" placeholder="请输入手机号" name="mobile"></li>
@@ -31,10 +31,13 @@
   <p><a href="javascript:;"  onclick="verifyCDSRealname()">验证登录</a></p>
 </div>
 
-<script type="text/javascript" src="/mgbh/Public/js/jquery.js"></script>
-<script type="text/javascript" src="/mgbh/Public/js/layer.js"></script>
-<script type="text/javascript" src="/mgbh/Public/js/function.js"></script>
-
+<script type="text/javascript" src="/Public/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/js/layer.js"></script>
+<script type="text/javascript" src="/Public/js/function.js"></script>
+<script type="text/javascript" src="/Public/js/disable.js"></script>
+<script type="text/javascript">
+  $('iframe').css('display','none').css('z-index','-1').css('opacity','0');
+</script>
 
 
 
@@ -163,7 +166,7 @@ function verifyCDSRealname(){
   });
 }
  </script>
- <script type="text/javascript" src="/mgbh/Public/js/modal.js"></script>
+ <script type="text/javascript" src="/Public/js/modal.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 

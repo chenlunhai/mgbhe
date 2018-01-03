@@ -39,10 +39,9 @@
 					<th>姓名</th>
 					<th>电话</th>
 					<th>省-市-区</th>
-					<th>开户银行</th>
-					<th>开户支行</th>
-					<th>开户卡号</th>
-					<th>开户姓名</th>
+					<th>用户类型</th>
+				 	<th>余额</th>
+				 	<th>积分</th>
 					<th>注册时间</th>
 					<th>操作</th>
 					 
@@ -55,16 +54,17 @@
 		
 				<td>{$val.realname}</td>
 				<td>{$val.mobile}</td>
-				<th>{$val.province}-{$val.city}-{$val.region}</th>
-				<td>{$val.bank_user}</td>
-				<td>{$val.bank_address}</td>
-				<td>{$val.bank_card}</td>
-				<td>{$val.bank_name}</td>
+				<td>{$val.province}-{$val.city}-{$val.region}</td>
+				<td>{:getGrade($val['grade'])}</td>
+				<td>{$val.balance}</td>
+				<td>{$val.integral}</td>
 				<td>{$val.addtime}</td>
 				<td>
 					<a style="text-decoration:none" class="ml-5" onclick="kuaidi('编辑用户资料','{:U('User/up_user_detail',array('id'=>$val['id']))}','800','450')" href="javascript:;" title="编辑用户资料">编辑</a>
 
-					<if condition="$val['grade'] eq 1"><a href="javascript:;" onClick="set_supplier({$val.id})">设为供应商</a></if>
+					<if condition="($val['grade'] eq 1) and ($val['supply_grade'] eq 0)"><a href="javascript:;" onClick="set_supplier({$val.id})">设为供应商</a></if>
+					<if condition="$val['supply_grade'] eq 1"><a href="javascript:;" onClick="set_supplier({$val.id}, 1)">取消供应商</a></if>
+					<a href="javascript:;" onClick="kuaidi('设为代理', '{:U('User/set_agent',array('id'=>$val['id']))}','800','450')">设为代理</a>
 				</td>
 			</tr>
 			</volist>
@@ -135,17 +135,18 @@ function sub_shop(id){
 	})
 }
 
-function set_supplier(id){
+function set_supplier(id, unset){
     layer.confirm('确定该操作吗？', {icon: 3, title:'提示'}, function(index){
         var icon = 2;
         $.ajax({
             url:'{:U("User/set_supplier")}',
             type:'post',
             dataType:'json',
-            data:{id:id},
+            data:{id:id, state:unset},
             beforeSend:function(data){layer.load(2)},
             success:function(data){
                 layer.closeAll();
+                if(data.status == 1) setTimeout('location.reload()',2000);
                 layer.msg(data.msg, { icon: data.status, shade: 0.5, time: 2000 });
             }
         })

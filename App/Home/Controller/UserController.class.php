@@ -3,6 +3,7 @@ namespace Home\Controller;
 use Think\Controller;
 use Common\Service\WrcsService;
 use Common\Service\SjbService;
+use Common\Service\FulapayService;
 class UserController extends RunController {
 
     /**
@@ -14,6 +15,17 @@ class UserController extends RunController {
         if(!IS_POST){
             exit($this->display());
         }
+    }
+    /**
+     * 邀请好友
+     * @param 2018-1-2 20:26:17
+     */
+    public function show_share_img()
+    {
+        $res = D('user_account')->create_share_img(parent::$uid);
+        if($res['status'] != 1) exit($res['msg']);
+        $this->assign('url',$res['msg']);
+        $this->display();
     }
     /**
      * 返回进入数钜宝链接
@@ -104,11 +116,12 @@ class UserController extends RunController {
     public function set_up(){
         $User = D('user_account');
         if(!IS_POST){
-            $user = $User->where(['id'=>parent::$uid])->field('realname,mobile,pcode')->find();
-            #获得用户推荐人名称
-            $pname = $User->get_puser_name($user['pcode']);
-            $user['prealname'] = $pname['msg'];
-           
+            $user = $User->where(['a.id'=>parent::$uid])->join('a left join __USER_ACCOUNT__ ac on a.pid=ac.id')->field('a.realname,a.mobile,a.pcode,a.pid,ac.realname pmrealname,a.province,a.city,a.bank_user,a.bank_address,a.bank_card')->find();
+            // #获得用户数钜宝推荐人名称
+            // $pname = $User->get_puser_name($user['pcode']);
+            // $user['prealname'] = $pname['msg'];
+            
+            
             $this->assign('data',$user);
             exit($this->display());
         }
@@ -118,12 +131,52 @@ class UserController extends RunController {
         $this->ajaxReturn($res);
     }
 
-
+    /**
+     * 从付啦获取银行支行信息
+     * @param 2017-12-28 18:13:23
+     */
+    public function get_bank_info()
+    {
+        if(!IS_POST) return;
+        $bank_name      = $_POST['optionone'];
+        $province_name  = $_POST['province'];
+        $city_name      = $_POST['city'];
+        if ($bank_name || $province_name || $city_name) {
+            $FulaModel = new FulapayService();
+            $info = $FulaModel->send($province_name,$city_name,$bank_name);
+             
+            $info = json_decode($info['data'], true);
+            
+            $data = array();
+            foreach ($info as $key => $value) {
+              $data[] = array('id' => $value['bank_number'] . ',' . $value['bank_name'], 'text' => $value['bank_name']);
+            }
+            $this->ajaxReturn(['info' => $data]);
+        }
+    }
     /**
      * 会员中心
      * @param 2017/11/3
      */
     public function personal(){
+        #店家认证  
+        $res = D('shop_register_record')->get_shop_register(parent::$uid); 
+        if($res['status']){
+            if(empty($res['data']))  $gourl = U('Group/authentication'); 
+            else{
+                if($res['data']['state']==2){  
+                    #认证失败
+                    $gourl = U('Group/authentication_fail');
+                }else if($res['data']['state']<2){
+                    #认证成功
+                    $gourl = U('Group/authentication_list');
+                }
+            }
+        }else{
+            $this->error($res['msg']);
+        }
+        $this->assign('authentication',$gourl);
+
         $id = parent::$uid;
         $user = D('user_account')->where(['id'=>$id])->find();
         #判断 当前用户是否已经成功申请店铺
@@ -171,9 +224,15 @@ class UserController extends RunController {
      */
     public function withdrawals(){
         if(!IS_POST){
-            D('user_account')->where(['u.id'=>parent::$uid])->join('u left join __USER_ESTATE__ as e on u.id=e.id')->field('u.id,u.realname,e.balance')->find();
+            $user = D('user_account')->where(['u.id'=>parent::$uid])->join('u left join __USER_ESTATE__ as e on u.id=e.id')->field('u.id,u.realname,e.balance,u.bank_address,u.bank_card,u.bank_user')->find();
+           
+            $this->assign('user',$user);
             exit($this->display());
         }
+        $post = I('post.');
+        $post['uid'] = parent::$uid;
+        $res = D('user_estate')->up_user_balance($post);
+        $this->ajaxReturn($res);
     }
 
     /**

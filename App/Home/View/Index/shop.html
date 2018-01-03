@@ -65,7 +65,7 @@ function loadNews(){
   
   var index = layer.load(2); 
   var ajaxData = {
-    url:"{:U('NoLogin/shop')}",type:'post',dataType:'json',
+    url:"{:U('Index/shop')}",type:'post',dataType:'json',
     data: jsonobj,
     beforeSend:function(data){ layer.load(2) },
     success:function(data){
@@ -80,11 +80,11 @@ function loadNews(){
 
           html += '<li>';
           html += '<div class="img">';
-          html += '<a href="'+"{:U('NoLogin/group','',false)}/gid/"+info[key]['id']+'"><img src="'+info[key]['gimg']+'"></a>';
+          html += '<a href="'+"{:U('Index/group','',false)}/gid/"+info[key]['id']+'"><img src="'+info[key]['gimg']+'"></a>';
           html += '</div>';
           html += '<p class="title">'+info[key]['gname']+'</p>';
           html += '<p class="tit">￥<em>'+info[key]['gteam_price']+'</em>/件<span>￥'+info[key]['gprice']+'</span></p>';
-          html += '<p class="pt"><a href="'+"{:U('NoLogin/group','',false)}/gid/"+info[key]['id']+'">立即拼团</a></p>';
+          html += '<p class="pt"><a href="'+"{:U('Index/group','',false)}/gid/"+info[key]['id']+'">立即拼团</a></p>';
           html += '</li>';
         } 
         //alert(html);

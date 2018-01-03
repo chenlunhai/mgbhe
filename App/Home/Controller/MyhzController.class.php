@@ -6,7 +6,7 @@ use Think\Exception;
 class MyhzController extends Controller {
 
 	/**
-	 * 蚂蚁盒子消息推送接口
+	 * 蚂蚁盒子消息推送接口-柜机推送过来的
 	 * @param 2017/11/9
 	 */
 	public function index()

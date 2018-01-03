@@ -57,15 +57,14 @@
         <div class="cc_top">
           <div class="center">
             <p class="title">{$data.sname}</p>
-            <p class="tit">官方认证</p>
+            <p class="tit">{$data.dmobile}</p>
           </div>
-          <div class="right"><a href="{:U('NoLogin/shop',['id'=>$data['sid']])}"><img src="__PUBLIC__/images/rp_sd.png">进入店铺</a></div>
+          <div class="right"><a href="{:U('Index/shop',['id'=>$data['sid']])}"><img src="__PUBLIC__/images/rp_sd.png">进入店铺</a></div>
         </div>
       </div>
 
       <div class="show_c_b">
-        <p>数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝</p>
-        <img src="__PUBLIC__/images/12.jpg">
+       {:turnStr($data['gcontent'])}
       </div>
 
     </div>
@@ -74,10 +73,10 @@
   <!-- 底部footer -->
   <div class="show_footer">
     <div class="s_f_gwc gwc3">
-      <a href="tel:{$shop.service_tel}">
+      <!-- <a href="tel:{$shop.service_tel}">
         <div class="f_g_img"><img src="__PUBLIC__/images/d_dh.png"></div>
         <p>客服</p>
-      </a>
+      </a> -->
       <a href="{:U('Index/shop',['id'=>$data['sid']])}">
         <div class="f_g_img"><img src="__PUBLIC__/images/d_sp.png"></div>
         <p>店铺</p>
@@ -157,6 +156,13 @@
     var num_jian = document.getElementById("num-jian");
     var input_num = document.getElementById("input-num");
     num_jia.onclick = function() {
+        var can_pay_num = parseInt("{$data['gnum']}")-parseInt("{$data['gpay_num']}");
+        if(parseInt(input_num.value) + 1 > can_pay_num){
+          layer.msg('您本团剩余最大可购买数为'+can_pay_num+'件',{icon: 2,shade:0.5,time:2000,closeBtn:1});
+          return;
+        }
+
+
         input_num.value = parseInt(input_num.value) + 1;
 
         var goods_total_price = $("#goods_total_price").html();  
@@ -198,7 +204,7 @@
 function checkOrder(){
     var buy_num = document.getElementById("input-num").value;
     $.ajax({
-      url:"{:U('NoLogin/group')}",type:'post',dataType:'json',
+      url:"{:U('Index/group')}",type:'post',dataType:'json',
       data:{id:"{$id}",buy_num:buy_num},
       success:function(data){
         layer.closeAll();
@@ -211,7 +217,7 @@ function checkOrder(){
         if(data.status==-1){
           layer.confirm('您还未登录，请登录', {btn: ['确定','取消'] }, 
             function(){
-              setTimeout(location.href=data.gourl,2000);
+              setTimeout(location.href='{$gourl}',2000);
             }
           );
 

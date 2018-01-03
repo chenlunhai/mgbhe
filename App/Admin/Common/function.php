@@ -21,10 +21,6 @@ function getShopRecordStatus($i){
 	return $arr[$i];
 }
 
-
-
-
-
 function getShopStatus($i){   
 	$arr = ['禁止访问','正常'];
 	return $arr[$i];
@@ -67,6 +63,42 @@ function getShopBalancePushSn($order_sn)
 {
 	if(empty($order_sn)) return '';
 	return M('pay_order')->where(['p.order_sn'=>$order_sn])->join('p left join __USER__ u on p.uid=u.id')->getField('u.push_sn');
+}
+
+/**
+ * 返回订单状态
+ * @date  2017/11/06
+ * @param  $i  string
+ * @return  string
+ */
+function getOrderStatus($i){
+	//0(待支付)1(已支付)2(已发货)3(已收货)4(退款中)5(完成退款)
+	$arr = ['待支付','已支付','已发货','已收货','退款中','完成退款'];
+	return $arr[$i];
+}
+
+/**
+ * 返回提现类型
+ * @date  2017/12/29
+ * @param  $i  string
+ * @return  string
+ */
+function getCashType($i){
+	//1(提至银行)2(提至支付宝)
+	$arr = ['','提至银行','提至支付宝'];
+	return $arr[$i];
+}
+
+/**
+ * 返回提现状态
+ * @date  2017/12/29
+ * @param  $i  string
+ * @return  string
+ */
+function getCashState($i){
+	// 0(未处理)1(通过)2(不通过)
+	$arr = ['未处理','已通过','不通过'];
+	return $arr[$i];
 }
 
 ?>

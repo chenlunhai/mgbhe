@@ -15,7 +15,7 @@
 </head>
 <body style="background:#f2f2f2;">
 <div class="main">
-  <div class="details">
+  <div class="detail">
     <ul>
       <!-- <li>
         <div class="left">
@@ -78,10 +78,11 @@ function loadNews(){
           html += '<p class="tit">'+info[key]['addtime']+'</p>';
           html += '</div>';
           html += '<div class="right">'+info[key]['money']+'元</div>';
+          html += '<div class="clearboth"></div>'
           html += '</li>';
 
         }
-        $('div.details').find('ul').append(html);
+        $('div.detail').find('ul').append(html);
         
         if(page==1 && len==0){ kk = false; $('.ping_ts').html('暂无数据'); }
         else{

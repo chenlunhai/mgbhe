@@ -1,23 +1,23 @@
-<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE HTML>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="renderer" content="webkit|ie-comp|ie-stand">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-<!--[if lt IE 9]>
-<script type="text/javascript" src="lib/html5.js"></script>
-<script type="text/javascript" src="lib/respond.min.js"></script>
-<script type="text/javascript" src="lib/PIE_IE678.js"></script>
-<![endif]-->
-<link href="/Public/admin/css/H-ui.min.css" rel="stylesheet" type="text/css" />
-
-<link href="/Public/admin/css/style.css" rel="stylesheet" type="text/css" />
-<link href="/Public/admin/css/iconfont.css" rel="stylesheet" type="text/css" />
-<!--[if IE 6]>
-<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
-<script>DD_belatedPNG.fix('*');</script>
+<?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link href="/Public/admin/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+
+<link href="/Public/admin/css/style.css" rel="stylesheet" type="text/css" />
+<link href="/Public/admin/css/iconfont.css" rel="stylesheet" type="text/css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
 <![endif]-->
 <link rel="stylesheet" type="text/css" href="/Public/admin/css/icheck.css" />
 <link rel="stylesheet" type="text/css" href="/Public/admin/css/skin.css" id="skin" />
@@ -62,6 +62,16 @@
 				</ul>
 			</dd>
 		</dl>
+		<dl id="menu-article">
+		<dt><em class="m_cn"><img src="/Public/admin/images/x_md.png"></em> <strong>货款记录</strong><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+		<dd style="display: block;">
+			<ul>
+				<li><a _href="<?php echo U('Money/money_list');?>" data-title="收入明细" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_01.png"></div>收入明细</a></li>
+				<li><a _href="<?php echo U('Money/gtcash');?>" data-title="货款提现" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_01.png"></div>货款提现</a></li>
+				<li><a _href="<?php echo U('Money/cash_list');?>" data-title="提现记录" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_01.png"></div>提现记录</a></li>
+			</ul>
+		</dd>
+	</dl>
 	</div>
 
 </aside>
@@ -83,9 +93,9 @@
 		</div>
 	</div>
 </section>
-<script type="text/javascript" src="/Public/admin/js/jquery.js"></script> 
-<script type="text/javascript" src="/Public/admin/js/H-ui.js"></script> 
-<script type="text/javascript" src="/Public/admin/js/layer/layer.js"></script> 
+<script type="text/javascript" src="/Public/admin/js/jquery.js"></script> 
+<script type="text/javascript" src="/Public/admin/js/H-ui.js"></script> 
+<script type="text/javascript" src="/Public/admin/js/layer/layer.js"></script> 
 <script type="text/javascript" src="/Public/admin/js/H-ui.admin.js"></script> 
 <script type="text/javascript">
 /*资讯-添加*/

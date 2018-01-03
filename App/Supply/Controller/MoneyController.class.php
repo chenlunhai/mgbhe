@@ -90,8 +90,6 @@ class MoneyController extends SeachController
      *ajax 提交提现写入记录表
      * post.cash 提现金额，后期在扩展支付宝选项
      * time：2017-12-2911:04
-     * 更改2018-01-0217:35
-     *
      */
     public function cash()
     {

@@ -15,20 +15,20 @@
 <body style="background:#f2f2f2;">
 <div class="main">
   <div class="index">
-    <div id="wrapper">
+    <!-- <div id="wrapper">
       <div id="scroller">      
         <ul>
             <li class="hov"><a href="{:U('Index/index')}">首页</a></li>
             <volist name="cate" id="val">
               <li><a href="{:U('Index/classification',['gcid'=>$val['id']])}">{$val.name}</a></li>
             </volist>
-
+    
             <div style="clear:both;"></div>
         </ul>      
       </div>
-    </div>
+    </div> -->
 
-    <div class="addWrap" style="padding-top:40px;">
+    <div class="addWrap">
       <div class="swipe" id="mySwipe">
         <div class="swipe-wrap">
           <volist name="banner" id="val">
@@ -46,20 +46,20 @@
 
     <div class="index_nav">
       <ul class="u4">
-        <li><a href="{:U('NoLogin/shop',['guser_limit'=> 0])}">
+        <li><a href="{:U('Index/index',['guser_limit'=> 0])}">
           <div class="img"><img src="__PUBLIC__/images/p_02.png"></div>
           <p>消费进</p>
         </a></li>
         <li><a class="btn01" data-toggle="modal" 
-          <eq name="grade" value="1">href="{:U('NoLogin/shop',['guser_limit'=> 1])}" <else/> href="#login-modal" </eq> >
+          <eq name="grade" value="1">href="{:U('Index/index',['guser_limit'=> 1])}" <else/> href="#login-modal" </eq> >
           <div class="img"><img src="__PUBLIC__/images/p_03.png"></div>
           <p>店家进</p>
         </a></li>
-        <li><a href="{:U('Index/regiment')}">
+        <li><a href="{:U('Group/regiment')}">
           <div class="img"><img src="__PUBLIC__/images/p_04.png"></div>
           <p>我的团</p>
         </a></li>
-        <li><a href="{:U('Index/search')}">
+        <li><a href="{:U('Group/search')}">
           <div class="img"><img src="__PUBLIC__/images/p_05.png"></div>
           <p>全部商品</p>
         </a></li>
@@ -187,8 +187,8 @@ loadNews();
 function loadNews(){
   var index = layer.load(2);
   var ajaxData = {
-    url:"{:U('NoLogin/index')}",type:'post',dataType:'json',
-    data:{page:page},
+    url:"{:U('Index/index')}",type:'post',dataType:'json',
+    data:{page:page,guser_limit:'{:I("get.guser_limit")}'},
     beforeSend:function(data){ layer.load(2) },
     success:function(data){
       layer.closeAll();
@@ -202,12 +202,12 @@ function loadNews(){
           html += '<div class="img">';
           if("{$grade}"==1){
             //店家用户 -  可参与所有团
-            html += '<a  href="'+"{:U('NoLogin/group','',false)}/gid/"+info[key]['id']+'"><img src="'+info[key]['gimg']+'"></a>';
+            html += '<a  href="'+"{:U('Index/group','',false)}/gid/"+info[key]['id']+'"><img src="'+info[key]['gimg']+'"></a>';
           }else if("{$grade}"==0){
             //消费者用户 -  只可参与消费团
             if(info[key]['guser_limit']==0){
               //消费者 商品
-              html += '<a href="'+"{:U('NoLogin/group','',false)}/gid/"+info[key]['id']+'"><img src="'+info[key]['gimg']+'"></a>';
+              html += '<a href="'+"{:U('Index/group','',false)}/gid/"+info[key]['id']+'"><img src="'+info[key]['gimg']+'"></a>';
             }else if(info[key]['guser_limit']==1){
               //店家 商品
               html += '<a data-toggle="modal" href="#login-modal" ><img src="'+info[key]['gimg']+'"></a>';
@@ -221,12 +221,12 @@ function loadNews(){
           html += '<p class="pt">';  //<a href="javascript:;">立即拼团</a>
           if("{$grade}"==1){
             //店家用户 -  可参与所有团
-            html += '<a  href="'+"{:U('NoLogin/group','',false)}/gid/"+info[key]['id']+'">立即拼团</a>';
+            html += '<a  href="'+"{:U('Index/group','',false)}/gid/"+info[key]['id']+'">立即拼团</a>';
           }else if("{$grade}"==0){
             //消费者用户 -  只可参与消费团
             if(info[key]['guser_limit']==0){
               //消费者 商品
-              html += '<a href="'+"{:U('NoLogin/group','',false)}/gid/"+info[key]['id']+'">立即拼团</a>';
+              html += '<a href="'+"{:U('Index/group','',false)}/gid/"+info[key]['id']+'">立即拼团</a>';
             }else if(info[key]['guser_limit']==1){
               //店家 商品
               html += '<a data-toggle="modal" href="#login-modal" >立即拼团</a>';

@@ -18,12 +18,17 @@ class RunController extends MainController {
 	 */
 	private static function check_user_login()
 	{	
-		#无登录状态下，首页
-	  	if(CONTROLLER_NAME == 'Index' && ACTION_NAME == 'index'){
-	  		$gourl = U('NoLogin/index');
-			header('location:'.$gourl);
-			die;
+		#无登录状态下
+		$nologin = (CONTROLLER_NAME == 'Index' && ACTION_NAME == 'index')||(CONTROLLER_NAME == 'NoLogin' && ACTION_NAME == 'envelopes')||(CONTROLLER_NAME == 'NoLogin' && ACTION_NAME == 'group')||(CONTROLLER_NAME == 'NoLogin' && ACTION_NAME == 'regiment_details');
+	  	if($nologin){
+	  		
 	  	}
+	  // 	#无登录状态下，首页
+	  // 	if(CONTROLLER_NAME == 'Index' && ACTION_NAME == 'index'){
+	  // 		$gourl = U('NoLogin/index');
+			// header('location:'.$gourl);
+			// die;
+	  // 	}
 
 		if(parent::$uid < 1){
 			$gourl = U('Login/index',['reurl'=>urlencode(getFullUrl())]);

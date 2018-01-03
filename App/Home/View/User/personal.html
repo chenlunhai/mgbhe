@@ -4,11 +4,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="format-detection" content="telephone=no">
+<meta http-equiv="Content-Security-Policy" content="script-src 'self'">
 <meta name="baidu-site-verification" content="brSKk1xvoHM7I577">
 <meta name="description" content=""/>
 <meta name="keywords" content=""/>
 <title>会员中心</title>
-<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css?=1">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css?=2">
 <link href="__PUBLIC__/css/hengshu.css" rel="stylesheet" type="text/css">
 <script type="text/javascript" src="__PUBLIC__/js/jquery.SuperSlide.2.1.1.js"></script>
 <script type="text/javascript" src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
@@ -35,14 +36,16 @@
 	<div class="per_con">
 		<ul>
 			<li><a href="{:U('User/my_wallet')}"><img src="__PUBLIC__/images/not_03.png">我的钱包</a></li>
-			<li><a  <if condition="$user['is_shoper'] EQ 0">href="{:U('User/apply')}"<else/>href="{:U('User/shop')}"</if>  ><img src="__PUBLIC__/images/not_07.png"> <if condition="$user['is_shoper'] EQ 0">店家认证<else/>我的店铺</if> </a></li>
+			<li><a  <if condition="$user['is_shoper'] EQ 0">href="{$authentication}"<else/>href="{:U('User/shop')}"</if>  ><img src="__PUBLIC__/images/not_07.png"> <if condition="$user['is_shoper'] EQ 0">店家认证<else/>我的店铺</if> </a></li>
 			<li><a href="{:U('User/show_cds_profit')}"><img src="__PUBLIC__/images/not_05.png">消费报销</a></li>
 			<li><a href="{:U('User/set_up')}"><img src="__PUBLIC__/images/not_04.png">个人信息</a></li>
+			<li><a href="{:U('User/show_share_img')}"><img src="__PUBLIC__/images/not_27.png">邀请好友</a></li>
 			<!-- <li><a href="{:U('User/shopping')}"><img src="__PUBLIC__/images/not_21.png">购物记录</a></li> -->
 		</ul>
-		<div class="copyright">服务热线：400-885-0271<br>湖南未来已来科技有限公司&nbsp;湘ICP备17016834号-1</div>
+		
 	</div>
-	<div class="per_adve"><img src="__PUBLIC__/images/not_09.png"></div>
+	<div class="per_adve"><a  <if condition="$user['is_shoper'] EQ 0">href="{$authentication}"<else/>href="{:U('User/shop')}"</if> ><img src="__PUBLIC__/images/not_09.png"></a></div>
+	<div class="copyright">服务热线：400-885-0271<br>湖南麦光宝盒科技发展有限公司&nbsp;湘ICP备17016834号-1</div>
 
 	<!-- 底部footer --> 
   <include file="Public/footer" />

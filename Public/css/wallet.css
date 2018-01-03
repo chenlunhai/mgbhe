@@ -35,8 +35,8 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 .wal_nav ul li{ float: left; padding: 3% 0; font-size: 20px; color: #ffbead; text-align: center; line-height: 30px;}
 .wal_nav ul li span{ color: #fff;}
 .wal_con{ width: 100%; margin: 10px auto 0; background:#fff; }
-.wal_con ul li{ width: 100%;border-bottom: solid 1px #e8e8e8;height: 40px; display: block; cursor: pointer;}
-.wal_con ul li p{ width: 94%; height: 40px; margin: 0 auto; line-height: 40px; font-size: 14px; color: #2e2e2e;  display: flex;  flex-direction: row; /* justify-content: center; */  align-items: center;  background: url(../images/not_08.png) no-repeat right center; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";  -moz-background-size: 8px 15px; background-size: 8px 15px; }
+.wal_con ul li{ width: 100%;border-bottom: solid 1px #e8e8e8;height: 45px; display: block; cursor: pointer;}
+.wal_con ul li p{ width: 94%; height: 45px; margin: 0 auto; line-height: 45px; font-size: 14px; color: #2e2e2e;  display: flex;  flex-direction: row; /* justify-content: center; */  align-items: center;  background: url(../images/not_08.png) no-repeat right center; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";  -moz-background-size: 8px 15px; background-size: 8px 15px; }
 .wal_con ul li img{     width: 18px;  height: 18px; display: block; margin-right: 5px;}
 .wal_con ul li a{ color: #e02e24; margin-left: 10px; text-decoration: underline;}
 .wal_fot{ width: 100%; max-width: 640px; min-width: 320px; bottom: 0; position: fixed; height: 40px;}
@@ -46,15 +46,15 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 
 /* 充值 */
 .recharge{ width: 100%; margin: 0 auto;}
-.recharge h3{ background: #fff; width: 94%; padding: 2% 3%; border-bottom:solid 1px #ddd;}
+.recharge h3{ background: #fff; width: 94%; padding: 10% 3% 5%; border-bottom:solid 1px #ddd;}
 .recharge h3 p{ font-size: 36px; color: #000000; line-height: 45px;}
 .recharge h3 span{ font-size: 16px;color: #ccc; line-height: 25px;}
-.rec_con{ width: 94%; background: #fff; padding: 3%;}
-.rec_con h4{ font-size: 20px; color: #000; line-height: 30px;}
-
+.rec_con{ width: 94%; background: #fff; padding: 3% 3% 5%;}
+.rec_con h4{ font-size: 20px; color: #000; line-height: 35px;}
+.rec_con ul{ margin:5px auto 0; width: 100%; }
 .rec_con ul li{ float: left; width:30%; margin: 2% 1.5% 0; }
-.rec_con ul li a{ display: block; width: 100%; text-align: center; line-height: 25px; font-size: 20px; color: #e02e24; padding: 3% 0; border:solid 1px #e02e24; border-radius: 8px;}
-.rec_con ul li a span{ font-size: 16px; color: #474747;}
+.rec_con ul li a{ display: block; width: 100%; text-align: center; line-height: 25px; font-size: 18px; color: #e02e24; padding: 3% 0; border:solid 1px #e02e24; border-radius: 4px;}
+.rec_con ul li a span{ font-size: 14px; color: #474747;}
 .rec_con ul li a:visited{ background: #e02e24; color: #fff;}
 .rec_con ul li a:active{ background: #e02e24; color: #fff;}
 .rec_con ul li a:hover{ background: #e02e24; color: #fff;}
@@ -133,6 +133,32 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 .details ul li .left .title{ font-size: 18px; color: #000; line-height: 30px;}
 .details ul li .left .tit{ font-size: 14px; color: #888; line-height: 20px;}
 .details ul li .right{ width: 30%; text-align: right; float: right; height: 50px; line-height: 50px; font-size: 18px; color: #000;}
+
+/* 详情 */
+.detail{ width: 100%; margin:0 auto;}
+.detail ul{ background: #fff;}
+.detail ul li{ width: 94%; padding: 3%;border-bottom:solid 1px #bcbab6;}
+.detail ul li .left{ width: 70%; float: left;}
+.detail ul li .left .title{ font-size: 16px; color: #000; line-height: 30px;}
+.detail ul li .left .tit{ font-size: 14px; color: #888; line-height: 25px;}
+.detail ul li .right{ width: 30%; text-align: right; float: right; height: 50px; line-height: 50px; font-size: 18px; color: #000;}
+
+/* 提现 */
+.drawal{ width: 100%; margin: 0 auto;}
+.drawal .dra_top{ width: 100%; height: 42px; background: #fff; clear:both;}
+.drawal .dra_top ul li{ float: left; height: 40px;}
+.drawal .dra_top ul li a{ text-align: center; line-height: 40px; display: block; font-size:16px; color: #000000; height: 40px;}
+.drawal .dra_top ul li.cur a{ border-bottom: solid 2px #e02e24; }
+.drawal .dra_con{ width: 100%; margin: 20px auto 0; background: #fff; padding-bottom: 20px;}
+.drawal .dra_con h3{ width: 94%; margin: 0 auto; height: 40px; line-height: 40px; font-size: 14px; color: #000;}
+.drawal .dra_con h3 img{ float: left; width: 16px; height: 16px; margin: 12px 7px 0 0;}
+.drawal .dra_con table{ width: 100%; padding: 0 3%;}
+.drawal .dra_con table tr td{ height: 40px; padding-bottom:2%;}
+.drawal .dra_con table tr td.bt{ width: 70px; font-size: 14px; color: #000}
+.drawal .dra_con table tr td.right .w_input{ width: 100%; height: 35px; line-height: 35px; line-height: 35px\9; box-sizing:border-box; padding-left:5%; font-size: 14px; color: #000; border:solid 1px #f0eff5;font-family: "微软雅黑"; border-radius: 4px; outline: none;    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);  -webkit-appearance: none;}
+.drawal .dra_con table tr td.right .ash{background: #f1f1f1; color: #222; opacity: 1;}
+.drawal .dra_tx{ width: 94%; margin: 20px auto 0; height: 40px;}
+.drawal .dra_tx a{ width: 100%; display: block; text-align: center; line-height: 40px; height: 40px; line-height: 40px\9; font-size: 14px; color: #fff; background: #e02e24; border-radius: 6px;}
 
 @media screen and (max-width: 420px){
 /* .my_wallet h3{ font-size: 20px;} */

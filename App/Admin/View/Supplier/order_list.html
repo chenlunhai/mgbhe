@@ -1,0 +1,96 @@
+<include file="Public/head"/>
+<title>供货商订单列表</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 供货商订单列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">	
+	<div class="cl pd-5 bg-1 bk-gray mt-20">    <span class="r">共有数据：<strong>{$count}</strong> 条</span> </div>
+	<div class="mt-20">
+	<div class="text-c" style="margin-top:10px;">
+	    <table cellpadding="3" cellspacing="0" class="table_98">
+			 <form  method="post" id="form1">
+			  <tbody>
+			  <tr>
+				<td>
+				订单号：<input type="text" name="osn" value="{$assign['osn']}" style="width:250px" class="input-text">
+				供货商：<input type="text" name="sname" value="{$assign['sname']}" style="width:100px" class="input-text">
+				商品名称：<input type="text" name="gname" value="{$assign['gname']}" style="width:250px" class="input-text">
+				收货人：<input type="text" name="realname" value="{$assign['realname']}" style="width:100px" class="input-text">
+                下单时间：<input type="text" id="stime" style="width:100px" class="input-text" name="stime" size="20" value="{$assign['stime']}">
+                - <input type="text" id="dtime" style="width:100px" class="input-text" name="dtime" size="10" value="{$assign['dtime']}">
+                状态：<select name="trade" class="s_select">
+                    <option value="" >请选择</option>
+                    <option value="0" <if condition="$assign['trade'] eq '0'">selected</if>>待支付</option>
+                    <option value="1" <if condition="$assign['trade'] eq 1">selected</if>>已支付</option>
+                    <option value="2" <if condition="$assign['trade'] eq 2">selected</if>>已发货</option>
+                    <option value="3" <if condition="$assign['trade'] eq 3">selected</if>>已收货</option>
+                    <option value="4" <if condition="$assign['trade'] eq 4">selected</if>>退款中</option>
+                    <option value="5" <if condition="$assign['trade'] eq 5">selected</if>>完成退款</option>
+                </select>
+				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找">
+				<!-- <input type="hidden" name="state" value="0">
+                <input class="btn btn-success" type="submit" value="导出" onclick="subExport()"> -->
+				</td>
+			  </tr>
+		  	  </tbody>
+		  	  </form>
+		</table>
+	</div>
+		<table class="table table-border table-bordered table-bg table-hover table-sort">
+				<tr class="text-c">
+					<th>下单时间</th>
+					<th>订单号</th>
+					<th>供货商</th>
+					<th>商品名称</th>
+					<th>商品图片</th>
+					<th>商品数量</th>
+					<th>收货人</th>
+					<th>订单金额</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			<tbody>
+			<volist name="data" id="val">
+			<tr class="text-c" id="info{$val.id}">
+				<td>{$val.addtime}</td>
+				<td>{$val.osn}</td>
+				<td>{$val.sname}</td>
+				<td>{$val.gname}</td>
+				<td>
+					<a target="_balck" href="{$val.gimg}">
+						<img src="{$val.gimg}" width="25" height="25">
+					</a>
+				</td>
+				<td>{$val.pay_num}</td>
+				<td>{$val.realname}</td>
+				<td>{$val.pay_price}</td>
+				<td>{:getOrderStatus($val['trade'])}</td>
+				<td></td>
+			</tr>
+			</volist>
+			</tbody>
+		</table>
+		<div id="page">{$page}</div>
+	</div>
+</div>
+<include file="Public/js"/>
+<script src="__PUBLIC__/admin/js/laydate/laydate.js"></script>
+<script type="text/javascript">
+$(function(){
+    laydate({
+       elem: '#stime'
+    })
+    laydate({
+       elem: '#dtime'
+    })
+})
+function subExport(){
+	$('input[name=state]').val(1);
+}
+function kuaidi(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+</script>
+</body>
+
+</html>

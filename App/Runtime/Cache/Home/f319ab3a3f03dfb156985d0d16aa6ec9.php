@@ -9,17 +9,28 @@
 <meta name="keywords" content=""/>
 <title>个人信息</title>
 <link rel="stylesheet" type="text/css" href="/Public/css/style.css">
+<script type="text/javascript" src="/Public/js/jquery.js"></script>
+<script type="text/javascript" src="/Public/js/layer.js"></script>
+<script type="text/javascript" src="/Public/js/function.js"></script>
+<script type="text/javascript" src="/Public/js/disable.js"></script>
+<script type="text/javascript">
+  $('iframe').css('display','none').css('z-index','-1').css('opacity','0');
+</script>
+
+
+<script type="text/javascript" src="/Public/js/select2.min.js"></script>
 </head>
 <body style="background:#f0eff5;">
 <div class="warp">
 	<div class="set">
 		<ul>
-			<li>数钜宝推荐人<span><?php echo ($data["prealname"]); ?></span></li>
+            <!-- <li>数钜宝推荐人<span><?php echo ($data["prealname"]); ?></span></li> -->
+            <li>麦光宝推荐人<span><?php echo ($data["pmrealname"]); ?></span></li>
 			<li>姓名<span><?php echo ($data["realname"]); ?></span></li>
 			<li>电话<span><?php echo ($data["mobile"]); ?></span></li>
-			<li><a href="javascript:;" onClick="toshare();">提现银行<span>绑定银行</span></a></li>
-			<li>卡号<span></span></li>
-			<li><a href="javascript:;">微信<span>绑定微信</span></a></li>
+			<li><a href="javascript:;" onClick="toshare();">提现银行<span><?php if(empty($data["bank_address"])): ?>绑定银行<?php else: echo ($data["bank_user"]); endif; ?></span></a></li>
+			<li>卡号<span><?php echo ($data["bank_card"]); ?></span></li>
+			<!-- <li><a href="javascript:;">微信<span>绑定微信</span></a></li> -->
 		</ul>
 		
 		<div class="set_qd">
@@ -33,11 +44,36 @@
     	<tr>
     		<td>
     			<div class="s_into">
-    				<select>
-    					<option>请选择银行</option>
-    					<option>请选择银行</option>
-    					<option>请选择银行</option>
-    				</select>
+    				<select name="bank_user" class="r_select" id="bank_user">
+                        <option value="中国工商银行" <?php if($user['bank_user'] == '中国工商银行'): ?>selected<?php endif; ?>>中国工商银行</option>
+                        <option value="中国农业银行" <?php if($user['bank_user'] == '中国农业银行'): ?>selected<?php endif; ?>>中国农业银行</option>
+                        <option value="中国银行" <?php if($user['bank_user'] == '中国银行'): ?>selected<?php endif; ?>>中国银行</option>
+                        <option value="中国建设银行" <?php if($user['bank_user'] == '中国建设银行'): ?>selected<?php endif; ?>>中国建设银行</option>
+                        <option value="交通银行" <?php if($user['bank_user'] == '交通银行'): ?>selected<?php endif; ?>>交通银行</option>
+                        <option value="中国邮政储蓄银行" <?php if($user['bank_user'] == '中国邮政储蓄银行'): ?>selected<?php endif; ?>>中国邮政储蓄银行</option>
+                        <option value="中国光大银行" <?php if($user['bank_user'] == '中国光大银行'): ?>selected<?php endif; ?>>中国光大银行</option>
+                        <option value="中国民生银行" <?php if($user['bank_user'] == '中国民生银行'): ?>selected<?php endif; ?>>中国民生银行</option>
+                        <option value="中信银行" <?php if($user['bank_user'] == '中信银行'): ?>selected<?php endif; ?>>中信银行</option>
+                        <option value="广发银行" <?php if($user['bank_user'] == '广发银行'): ?>selected<?php endif; ?>>广发银行</option>
+                        <option value="平安银行" <?php if($user['bank_user'] == '平安银行'): ?>selected<?php endif; ?>>平安银行</option>
+                        <option value="浦发银行" <?php if($user['bank_user'] == '浦发银行'): ?>selected<?php endif; ?>>浦发银行</option>
+                        <option value="渤海银行" <?php if($user['bank_user'] == '渤海银行'): ?>selected<?php endif; ?>>渤海银行</option>
+                        <option value="招商银行" <?php if($user['bank_user'] == '招商银行'): ?>selected<?php endif; ?>>招商银行</option>
+                        <option value="华夏银行" <?php if($user['bank_user'] == '华夏银行'): ?>selected<?php endif; ?>>华夏银行</option>
+                        <option value="兴业银行" <?php if($user['bank_user'] == '兴业银行'): ?>selected<?php endif; ?>>兴业银行</option>
+                        <option value="浙商银行" <?php if($user['bank_user'] == '浙商银行'): ?>selected<?php endif; ?>>浙商银行</option>
+                        <option value="晋商银行" <?php if($user['bank_user'] == '晋商银行'): ?>selected<?php endif; ?>>晋商银行</option>
+                        <option value="包商银行" <?php if($user['bank_user'] == '包商银行'): ?>selected<?php endif; ?>>包商银行</option>
+                        <option value="徽商银行" <?php if($user['bank_user'] == '徽商银行'): ?>selected<?php endif; ?>>徽商银行</option>
+                        <option value="北京银行" <?php if($user['bank_user'] == '北京银行'): ?>selected<?php endif; ?>>北京银行</option>
+                        <option value="内蒙古银行" <?php if($user['bank_user'] == '内蒙古银行'): ?>selected<?php endif; ?>>内蒙古银行</option>
+                        <option value="吉林银行" <?php if($user['bank_user'] == '吉林银行'): ?>selected<?php endif; ?>>吉林银行</option>
+                        <option value="上海银行" <?php if($user['bank_user'] == '上海银行'): ?>selected<?php endif; ?>>上海银行</option>
+                        <option value="江苏银行" <?php if($user['bank_user'] == '江苏银行'): ?>selected<?php endif; ?>>江苏银行</option>
+                        <option value="广州银行" <?php if($user['bank_user'] == '广州银行'): ?>selected<?php endif; ?>>广州银行</option>
+                        <option value="长沙银行" <?php if($user['bank_user'] == '长沙银行'): ?>selected<?php endif; ?>>长沙银行</option>
+                        <option value="广东南粤银行" <?php if($user['bank_user'] == '广东南粤银行'): ?>selected<?php endif; ?>>广东南粤银行</option>
+                      </select>
     			</div>
     		</td>
     	</tr>
@@ -46,15 +82,14 @@
     			<div class="s_info">
                     <div>
                         <select id="b_province" name="b_province">
-                        	<option>请选择省</option>
-                        	<option>请选择省</option>
-                        	<option>请选择省</option>
+                        	 
                         </select>
                         <select id="b_city" name="b_city">
-                        	<option>请选择市</option>
-                        	<option>请选择市</option>
-                        	<option>请选择市</option>
+                        	 
                         </select>
+                        <select style="display:none;" id="county"></select>
+                        <script class="resources library" src="/Public/js/area.js?i=0" type="text/javascript"></script>
+                        <script>  region_init("b_province","b_city","county","<?php echo ($data["province"]); ?>","","");  </script>  
                     </div>
                 </div>
     		</td>
@@ -62,31 +97,24 @@
     	<tr>
     		<td>
     			<div class="s_into">
-    				<select>
-    					<option>请选择银行</option>
-    					<option>请选择银行</option>
-    					<option>请选择银行</option>
+    				<select id="selg" onClick="getOutBankInfo();">
+    					<option value="<?php echo getBankInfo($data['bank_address'],0);?>,<?php echo getBankInfo($data['bank_address'],1);?>"><?php echo getBankInfo($data['bank_address'],1);?></option>
     				</select>
     			</div>
     		</td>
     	</tr>
     	<tr>
     		<td>
-    			<input type="text" class="s_input" placeholder="请输入卡号">
+    			<input type="text" name="bank_card" id="bank_card" class="s_input" placeholder="请输入卡号" value="<?php echo ($data["bank_card"]); ?>">
     		</td>
     	</tr>
     </table>
   </div>
   <div class="am-share-foot">
-    <a href="javascript:;"   class="a_foot">确定</a>
+    <a href="javascript:;"   class="a_foot" onClick="verSubmit()">确定</a>
   </div>
 </div>
 </div>
-
-<script type="text/javascript" src="/Public/js/jquery.js"></script>
-<script type="text/javascript" src="/Public/js/layer.js"></script>
-<script type="text/javascript" src="/Public/js/function.js"></script>
-
 
 
 <script type="text/javascript">
@@ -108,48 +136,84 @@
         }) 
     }
 </script>
+
+
 <script type="text/javascript">
-	//提交
-	function verSubmit(){
-		// var nickname = $.trim($('input[name=nickname]').val());
-	    var mobile = $.trim($('input[name=mobile]').val());
-	    // var bank_user = $.trim($('select[name=bank_user]').val());
-	    // var bank_address = $.trim($('input[name=bank_address]').val());
-	    // var bank_name = $.trim($('input[name=bank_name]').val());
-	    // var bank_card = $.trim($('input[name=bank_card]').val());
-
-	    /*var data = <?php echo json_encode($data);?>;
-	    var user_arr = eval(data);
-
-	    var index = ['nickname','mobile','bank_user','bank_address','bank_name','bank_card'];
-	    var similar_flag = false;
-	    for (var i = index.length - 1; i >= 0; i--) {
-	    	if($.trim(eval(index[i]))==user_arr[index[i]]){
-	    		similar_flag = true;
-	    	}
-	    };
-	    
-	    if(similar_flag){  //5
-	    	layer.msg('数据未做更改！', {icon: 7,shade: 0.5,time: 2000});
-	    	return;
-	    }*/
-
-		var ajaxData = {
-		    url:'<?php echo U("User/set_up");?>',type:'post',dataType:'json',data:{mobile:mobile},
-		    beforeSend:function(data){layer.load(2)},
-		    success:function(data){
-		      layer.closeAll();
-		      //alert(data.status);
-		      if(data.status == 1){
-		        layer.msg(data.msg, {icon: data.status,shade: 0.5,time: 2000});
-		        //setTimeout(location.replace("<?php echo U('User/index');?>"),2000);   //2s后跳转到gourl
-		        return;
-		      }
-		      layer.msg(data.msg, {icon: data.status,shade: 0.5,time: 2000})
-		    }
-		}
-		$.ajax(ajaxData);
+$(document).ready(function() {
+  $("#b_province").change(function(){ 
+   getOutBankInfo();
+  }); 
+  $('#b_city').change(function(){
+    getOutBankInfo();
+  })
+  $('#bank_user').change(function(){
+    getOutBankInfo();
+  })
+  
+});
+function  getOutBankInfo () {
+    var optionone = $("#bank_user option:selected").val(); //银行
+    var pro = $('#b_province').val(); //省
+    var address = $("#b_city option:selected").val(); //市
+    $('#selg').empty();
+    if (optionone && pro && address) {
+        var arr = '北京,上海,重庆,天津';
+        var province = pro;
+       
+        if(arr.indexOf(pro) < 0){
+          province = pro+'省';
+        }else{
+          province = pro+'市';
+        }
+        $.ajax({
+            url:'<?php echo U("User/get_bank_info");?>',type: 'post',data: {optionone:optionone,city:address,province:province},dataType: 'json',
+            beforeSend:function(data){layer.load(2)},
+            success:function(data){
+            layer.closeAll();
+            var info = data.info;
+            if(info.length>0){
+              $("#selg").select2({
+                data: info,
+                placeholder: '请选择',
+                allowClear: true
+              });   
+              $('#nuj').css("display","none");
+            }else{
+               $('#nuj').show();
+            }
+          }
+        })
+        $('#selg').attr('onClick','');
+    }
+}
+//提交
+function verSubmit(){
+    var bank_user = $('#bank_user').val();
+    var bank_card = $('#bank_card').val();
+    var bank_address = $('#selg').val();
+    if(!bank_user){
+        layer.msg('请选择开户银行', {icon: 2,shade: 0.5,time: 2000,closeBtn:1});
+        return;
+    }
+    if(!bank_card){
+        layer.msg('请输入开户卡号', {icon: 2,shade: 0.5,time: 2000,closeBtn:1});
+        return;
+    }
+    if(!bank_address){
+        layer.msg('请选择开户支行', {icon: 2,shade: 0.5,time: 2000,closeBtn:1});
+        return;
+    }
+	var ajaxData = {
+	    url:'<?php echo U("User/set_up");?>',type:'post',dataType:'json',data:{bank_user:bank_user,bank_card:bank_card,bank_address:bank_address},
+	    beforeSend:function(data){layer.load(2)},
+	    success:function(data){
+	      layer.closeAll();
+	      if(data.status == 1)    setTimeout('location.reload()',2000);
+	      layer.msg(data.msg, {icon: data.status,shade: 0.5,time: 2000});
+	    }
 	}
+	$.ajax(ajaxData);
+}
 </script>
 </body>
 </html>

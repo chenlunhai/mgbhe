@@ -8,7 +8,7 @@ use Think\Exception;
 class SjbService{
 	const APIURL = 'http://sjb.wlylai.com/Mgbh/';	#数钜宝接口请求地址
 	const GOURL  = 'http://sjb.wlylai.com/';	#数钜宝地址
-	const STATUS = 0;	#0（禁止使用）1（正常使用）
+	const STATUS = 1;	#0（禁止使用）1（正常使用）
 
 	/**
 	 * 大盒子消费订单写入数钜宝

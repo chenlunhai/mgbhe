@@ -19,7 +19,7 @@ class GoodsSupplyModel extends RunModel{
 			 
 			if($data['gstatus'] == 2){	#更改商品状态，商品自动开团
 				$goods = $this->where(['id'=>$data['id']])->field('did,gname,gprice,gteam_price,gnum,gimg,gcity,guser_limit,gpay_limit')->find();	#商品资料
-				$goods['gid'] = $data['id']; $goods['gsn'] = '0001';
+				$goods['gid'] = $data['id']; $goods['gsn'] = '0.0001';
 			}
 			 
 		} catch (Exception $e) {

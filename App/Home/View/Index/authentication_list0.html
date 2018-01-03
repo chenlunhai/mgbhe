@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta name="format-detection" content="telephone=no">
+<meta name="baidu-site-verification" content="brSKk1xvoHM7I577">
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<title>店家认证</title>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/style.css">
+
+</head>
+<body>
+<div class="warp">
+	<div class="auth">
+		<h3><img src="__PUBLIC__/images/auth.png">
+			<EQ name="data.state" value="0">审核中</EQ>
+			<EQ name="data.state" value="1">认证成功</EQ>
+			<EQ name="data.state" value="2">认证失败</EQ>
+		</h3>
+		<table cellspacing="0" cellpadding="0" border="0" class="list">
+			<tr>
+				<td class="bt">商家名称</td><td class="right">{$data.shopname}</td>
+			</tr>
+			<tr>
+				<td class="bt">法人姓名</td><td class="right">{$data.realname}</td>
+			</tr>
+			<tr>
+				<td class="bt">执照号码</td><td class="right">{$data.shopsn}</td>
+			</tr>
+      <tr>
+        <td class="bt" valign="top" style="line-height:35px;">营业执照</td><td class="right">
+        <volist name="data.imgurl" id="val">
+        	<img src="{$val}">
+    	</volist>
+    	</td>   <!-- __PUBLIC__/images/moren.png -->
+      </tr>  
+		</table>
+		
+		<div class="auth_tj">
+		<a <EQ name="data.state" value="2">href="{:U('Index/authentication')}"<else/>href="javascript:;"</EQ>>
+			<EQ name="data.state" value="0">审核中</EQ>
+			<EQ name="data.state" value="1">认证成功</EQ>
+			<EQ name="data.state" value="2">重新审核</EQ>
+		</a></div>
+	</div>
+</div>
+
+</body>
+</html>

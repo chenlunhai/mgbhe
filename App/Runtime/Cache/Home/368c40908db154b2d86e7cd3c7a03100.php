@@ -57,15 +57,14 @@
         <div class="cc_top">
           <div class="center">
             <p class="title"><?php echo ($data["sname"]); ?></p>
-            <p class="tit">官方认证</p>
+            <p class="tit"><?php echo ($data["dmobile"]); ?></p>
           </div>
-          <div class="right"><a href="<?php echo U('NoLogin/shop',['id'=>$data['sid']]);?>"><img src="/Public/images/rp_sd.png">进入店铺</a></div>
+          <div class="right"><a href="<?php echo U('Index/shop',['id'=>$data['sid']]);?>"><img src="/Public/images/rp_sd.png">进入店铺</a></div>
         </div>
       </div>
 
       <div class="show_c_b">
-        <p>数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝数钜宝</p>
-        <img src="/Public/images/12.jpg">
+       <?php echo turnStr($data['gcontent']);?>
       </div>
 
     </div>
@@ -74,10 +73,10 @@
   <!-- 底部footer -->
   <div class="show_footer">
     <div class="s_f_gwc gwc3">
-      <a href="tel:<?php echo ($shop["service_tel"]); ?>">
+      <!-- <a href="tel:<?php echo ($shop["service_tel"]); ?>">
         <div class="f_g_img"><img src="/Public/images/d_dh.png"></div>
         <p>客服</p>
-      </a>
+      </a> -->
       <a href="<?php echo U('Index/shop',['id'=>$data['sid']]);?>">
         <div class="f_g_img"><img src="/Public/images/d_sp.png"></div>
         <p>店铺</p>
@@ -135,7 +134,10 @@
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/layer.js"></script>
 <script type="text/javascript" src="/Public/js/function.js"></script>
-
+<script type="text/javascript" src="/Public/js/disable.js"></script>
+<script type="text/javascript">
+  $('iframe').css('display','none').css('z-index','-1').css('opacity','0');
+</script>
 
 
 <script type="text/javascript">
@@ -162,6 +164,13 @@
     var num_jian = document.getElementById("num-jian");
     var input_num = document.getElementById("input-num");
     num_jia.onclick = function() {
+        var can_pay_num = parseInt("<?php echo ($data['gnum']); ?>")-parseInt("<?php echo ($data['gpay_num']); ?>");
+        if(parseInt(input_num.value) + 1 > can_pay_num){
+          layer.msg('您本团剩余最大可购买数为'+can_pay_num+'件',{icon: 2,shade:0.5,time:2000,closeBtn:1});
+          return;
+        }
+
+
         input_num.value = parseInt(input_num.value) + 1;
 
         var goods_total_price = $("#goods_total_price").html();  
@@ -203,7 +212,7 @@
 function checkOrder(){
     var buy_num = document.getElementById("input-num").value;
     $.ajax({
-      url:"<?php echo U('NoLogin/group');?>",type:'post',dataType:'json',
+      url:"<?php echo U('Index/group');?>",type:'post',dataType:'json',
       data:{id:"<?php echo ($id); ?>",buy_num:buy_num},
       success:function(data){
         layer.closeAll();
@@ -216,7 +225,7 @@ function checkOrder(){
         if(data.status==-1){
           layer.confirm('您还未登录，请登录', {btn: ['确定','取消'] }, 
             function(){
-              setTimeout(location.href=data.gourl,2000);
+              setTimeout(location.href='<?php echo ($gourl); ?>',2000);
             }
           );
 
