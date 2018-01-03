@@ -1,6 +1,6 @@
 -- Adminer 4.2.1 MySQL dump
 USE `test_wl_mgbh`;
-
+//sql_address:http://39.108.49.42/ftpedit/lib/plugins/adminer/?username=root&db=test_wl_mgbh&select=wl_user_account
 DROP TABLE IF EXISTS `wl_access_token`;
 CREATE TABLE `wl_access_token` (
   `id` int(8) unsigned NOT NULL AUTO_INCREMENT,
