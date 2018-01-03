@@ -192,8 +192,8 @@ class GoodsOpenGroupOrderModel extends Model{
         try {
             $check_res = check_data($data,['uid','id']);
             if(isset($check_res['status'])) throw new Exception($check_res['msg'],11000);
-            $order = $this->where(['id'=>$data['id'],'uid'=>$data['uid'],'trade'=>2])->field('id')->find();
-            $this->add_seller_money($data);
+            $order = $this->where(['id'=>$data['id'],'uid'=>$data['uid'],'trade'=>2])->field('id,pay_price,osn,did')->find();
+  
             if(empty($order)) throw new Exception("订单状态无法确认收货");
 
             $up_order = ['trade'=>3,'get_goods_time'=>date('Y-m-d H:i:s',NOW_TIME)];
@@ -236,6 +236,7 @@ class GoodsOpenGroupOrderModel extends Model{
             }
 
             $Model->commit();
+            $this->add_seller_money($order); #增加供应商贷款;
             return ['status'=>1,'msg'=>'操作成功'];
         } catch (Exception $e) {
             $Model->rollback();
@@ -243,47 +244,53 @@ class GoodsOpenGroupOrderModel extends Model{
         }
     }
     /**
-     * 订单货款的写入，货款记录，货款提现
-     * @param 2017/12/27
-     * @param uid,id
+     * 确认收货之后执行，增加供应商贷款余额-已完善不要替换修改！
+     * @param 2018-1-2 20:53:09
+     * @param array:total_price,pay_price,did,osn
      * @return  array
      */
     public  function add_seller_money($data){
         try {
 
-            $check_res = check_data($data,['uid','id']);
+            $check_res = check_data($data,['pay_price','did','osn']);
             if(isset($check_res['status'])) throw new Exception($check_res['msg'],11000);
 
-            $order= $this->where(['id'=>$data['id'],'uid'=>$data['uid'],'trade'=>2])->field('osn,did,pay_price')->find();
-            $supply_money=M('user_estate')->where(['id'=>$order['did']])->field('supply_money,total_supply_money')->find();
-            $did=$order['did'];
-            $osn=$order['osn'];
-            $state=0;
-            /**供应商订单收入= 订单总额*0.2-订单总额*0.006;
-             * 每次确定收货 货款数额(supply_money)=原有的数额+订单金额
-             *货款总额=原有货款总额+订单金额-手续费
-             * 修改2018-01-0217:31
-             */
-            #此处感觉不对
-           $feeMoney=$supply_money['supply_money']+$order['pay_price']*0.2-$order['pay_price']*0.006;
-           // $feeMoney=$order['pay_price']*0.2-$order['pay_price']*0.006;
-            $money=$order['pay_price']*0.2-$order['pay_price']*0.006;
-            $fee=$order['pay_price']*0.006;
-            $cmoney=$supply_money['total_supply_money']+$money;
-            $in = [	#写入记录
-                'did'=>$did,'osn'=> $osn,'state'=>$state,'money'=>$money,'cmoney'=>$cmoney,'fee'=>$fee];
-            $Model = new Model();
-            $Model->startTrans();
-            $supply=$Model->table('__SUPPLY_MONEY_RECORD__')->add($in);
-            $updae_user_estate=M('user_estate')->where(['id'=>$did])->save(['supply_money'=>$feeMoney,'total_supply_money'=>$cmoney]);
-            if(!$updae_user_estate) throw new Exception("更新商家信息失败", 20000);
-            if(!$supply) throw new Exception("写入订单失败", 20000);
+            #订单是否已给过奖励
+            $exists = M('supply_money_record')->where(['osn'=>$data['osn']])->count();
+            if($exists > 0) throw new Exception("订单已处理", 0);
+            
+            $supply_user = D('user_estate')->get_user_estate($data['did'],'supply_money,total_supply_money');
+            
+            #写入贷款余额记录
+            $fee        = turnDecimal($data['pay_price'] * 0.2);    #贷款数额
+            $trade_fee  = turnDecimal($data['pay_price'] * 0.006);  #手续费-第三方支付的
+            $money      = $data['pay_price'] - $fee - $trade_fee;
+            if($money < 0.01) throw new Exception("贷款数额低于0.01", 0);
+            
+            $in_supply = [
+                'did'=>$data['did'],'osn'=>$data['osn'],'state'=>0,'money'=>$money,'fee'=>$fee,'trade_fee'=>$trade_fee,'cmoney'=>$money+$supply_user['supply_money']
+            ];
+            $up_estate = [
+                'supply_money'=>['exp','supply_money+'.$in_supply['money']],'total_supply_money'=>['exp','total_supply_money+'.$in_supply['money']]
+            ];
+            
+        } catch (Exception $e) {
+            return ['status'=>0,'msg'=>$e->getMessage(),'code'=>$e->getCode()];
+        }
+        #事务处理
+        $Model = new Model();
+        $Model->startTrans();
+        try {
+            $inRes = $Model->table('__SUPPLY_MONEY_RECORD__')->add($in_supply);
+            if(!$inRes) throw new Exception("写入贷款记录失败", 20000);
+            $upRes = $Model->table('__USER_ESTATE__')->where(['id'=>$data['did']])->limit(1)->save($up_estate);
+            if(!$upRes) throw new Exception("更改供货商资金失败", 20001);
+            
             $Model->commit();
             return ['status'=>1,'msg'=>'操作成功'];
         } catch (Exception $e) {
             $Model->rollback();
-            return ['status'=>0,'msg'=>$e->getMessage(),'code'=>$e->getCode()];
-
+             return ['status'=>0,'msg'=>$e->getMessage(),'code'=>$e->getCode()];
         }
     }
 
