@@ -1,22 +1,22 @@
-.footer{ width: 100%; max-width: 640px; min-width: 320px; height: auto; position: fixed; bottom: 0; border-top:solid 1px #ebebeb; background: #fff;clear:both;}
+.footer{ width: 100%; max-width: 640px; min-width: 320px; height: auto; position: fixed; bottom: 0; border-top:solid 1px #ebebeb; background: #fff;clear:both;z-index: 100;}
 .u1 li{ width: 100%;}
 .u2 li{ width: 50%;}
 .u3 li{ width: 33.33%;}
 .u4 li{ width: 25%;}
 .u5 li{ width: 20%;}
 .footer ul li{ float: left; }
-.footer ul li a{ width: 100%;height: 44px;; display: block; padding:7px 0;}
-.footer ul li a .img{ width: 24px; height: 24px; margin: 0 auto;}
-.footer ul li a .img img{ width: 24px; height: 24px; display: block;}
-.footer ul li a p{font-size: 14px; color: #9c9c9c; line-height: 20px; text-align: center; padding-top:2px;}
+.footer ul li a{ width: 100%;height: 44px;; display: block; padding:9px 0;}
+.footer ul li a .img{ width: 20px; height: 20px; margin: 0 auto;}
+.footer ul li a .img img{ width: 20px; height: 20px; display: block;}
+.footer ul li a p{font-size: 12px; color: #9c9c9c; line-height: 20px; text-align: center; padding-top:2px;}
 .footer ul li.cur a p{ color: #e02e24;}
-.footer ul li a .img1{ background: url(../images/p_foot1-1.png) no-repeat; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 24px 24px; background-size: 24px 24px;}
-.footer ul li a .img2{ background: url(../images/p_foot2-1.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 24px 24px; background-size: 24px 24px;}
-.footer ul li a .img3{ background: url(../images/p_foot3-1.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 24px 24px; background-size: 24px 24px;}
-.footer ul li a .img4{ background: url(../images/p_foot4-1.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 24px 24px; background-size: 24px 24px;}
-.footer ul li.cur a .img1{ background: url(../images/p_foot11.png) no-repeat; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 24px 24px; background-size: 24px 24px;}
-.footer ul li.cur a .img2{ background: url(../images/p_foot22.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 24px 24px; background-size: 24px 24px;}
-.footer ul li.cur a .img3{ background: url(../images/p_foot33.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 24px 24px; background-size: 24px 24px;}
-.footer ul li.cur a .img4{ background: url(../images/p_foot44.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 24px 24px; background-size: 24px 24px;}
+.footer ul li a .img1{ background: url(../images/p_foot1-1.png) no-repeat; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 20px 20px; background-size: 20px 20px;}
+.footer ul li a .img2{ background: url(../images/p_foot2-1.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 20px 20px; background-size: 20px 20px;}
+.footer ul li a .img3{ background: url(../images/p_foot3-1.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 20px 20px; background-size: 20px 20px;}
+.footer ul li a .img4{ background: url(../images/p_foot4-1.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 20px 20px; background-size: 20px 20px;}
+.footer ul li.cur a .img1{ background: url(../images/p_foot11.png) no-repeat; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 20px 20px; background-size: 20px 20px;}
+.footer ul li.cur a .img2{ background: url(../images/p_foot22.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 20px 20px; background-size: 20px 20px;}
+.footer ul li.cur a .img3{ background: url(../images/p_foot33.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 20px 20px; background-size: 20px 20px;}
+.footer ul li.cur a .img4{ background: url(../images/p_foot44.png) no-repeat;  filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size: 20px 20px; background-size: 20px 20px;}
 
 

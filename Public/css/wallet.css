@@ -35,8 +35,8 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 .wal_nav ul li{ float: left; padding: 3% 0; font-size: 20px; color: #ffbead; text-align: center; line-height: 30px;}
 .wal_nav ul li span{ color: #fff;}
 .wal_con{ width: 100%; margin: 10px auto 0; background:#fff; }
-.wal_con ul li{ width: 100%;border-bottom: solid 1px #e8e8e8;height: 45px; display: block; cursor: pointer;}
-.wal_con ul li p{ width: 94%; height: 45px; margin: 0 auto; line-height: 45px; font-size: 14px; color: #2e2e2e;  display: flex;  flex-direction: row; /* justify-content: center; */  align-items: center;  background: url(../images/not_08.png) no-repeat right center; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";  -moz-background-size: 8px 15px; background-size: 8px 15px; }
+.wal_con ul li{ width: 100%;border-bottom: solid 1px #e8e8e8;height: 50px; display: block; cursor: pointer;}
+.wal_con ul li p{ width: 94%; height: 50px; margin: 0 auto; line-height: 50px; font-size: 16px; color: #2e2e2e;  display: flex;  flex-direction: row; /* justify-content: center; */  align-items: center;  background: url(../images/not_08.png) no-repeat right center; filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";  -moz-background-size: 8px 15px; background-size: 8px 15px; }
 .wal_con ul li img{     width: 18px;  height: 18px; display: block; margin-right: 5px;}
 .wal_con ul li a{ color: #e02e24; margin-left: 10px; text-decoration: underline;}
 .wal_fot{ width: 100%; max-width: 640px; min-width: 320px; bottom: 0; position: fixed; height: 40px;}
@@ -82,15 +82,16 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 .am-share-foot a.a_foot{ width: 100%; margin:0px auto; display: block; background: #e02e24; border-radius: 6px; font-size: 16px; color: #fff;text-align: center; line-height: 40px;}
 
 .am_con{ width: 100%; padding: 5% 0;}
-.am_con p{ font-size: 30px; color: #000; text-align: center; line-height: 40px; font-weight: bold;}
+.am_con p{ font-size: 20px; color: #000; text-align: center; line-height: 45px; font-weight: bold;}
+.am_con p span{ font-size: 35px;}
 .am_con h5{ font-size: 16px; margin-left:5%; margin-top:10px; color: #7c7c7c; line-height: 30px;}
 .am_con ul{ width: 95%; margin-left:5%; border-top:solid 1px #e2e2e2;}
-.am_con ul li{ height: 40px; border-bottom:solid 1px #e2e2e2;}
-.am_con ul li label{ width: 95%; margin-right: 5%; height: 40px; font-size: 14px; color: #3e3e3e; line-height: 40px;}
-.am_con ul li label img{ width: 20px; height: 20px; display: block; float: left; margin-top:10px; margin-right: 5px;}
+.am_con ul li{ height: 50px; border-bottom:solid 1px #e2e2e2;}
+.am_con ul li label{ width: 95%; margin-right: 5%; height: 50px; font-size: 16px; color: #3e3e3e; line-height: 50px;}
+.am_con ul li label img{ width: 20px; height: 20px; display: block; float: left; margin-top:15px; margin-right: 5px;}
 .regular-radio {	display: none;}
 .regular-radio + label {	-webkit-appearance: none; color: #666;	background-color: #fff;	display: inline-block;	position: relative;}
-.regular-radio:checked + label:after {	content: ' ';	width: 20px;	height: 20px;	border-radius: 100%;	position: absolute;	top: 7px;	background: url(../images/not_26.png) no-repeat;	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size:25px 25px;   background-size:25px 25px;	text-shadow: 0px;	right: 0px;	font-size: 32px;}
+.regular-radio:checked + label:after {	content: ' ';	width: 20px;	height: 20px;	border-radius: 100%;	position: absolute;	top: 12px;	background: url(../images/not_26.png) no-repeat;	filter:"progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')";   -moz-background-size:25px 25px;   background-size:25px 25px;	text-shadow: 0px;	right: 0px;	font-size: 32px;}
 .regular-radio:checked + label {	background-color: #fff;	}
 
 .regular-radio:checked + label .img{ border-color: #000;}
@@ -160,6 +161,25 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 .drawal .dra_tx{ width: 94%; margin: 20px auto 0; height: 40px;}
 .drawal .dra_tx a{ width: 100%; display: block; text-align: center; line-height: 40px; height: 40px; line-height: 40px\9; font-size: 14px; color: #fff; background: #e02e24; border-radius: 6px;}
 
+/* 我的团队 */
+.team{ width:100%;}
+.team .team_top{ width: 94%; background: #e02e24;padding:5% 3%;}
+.team .team_top .t_t_img{ width: 80px; height: 80px; background: #fff; float: left; margin-top:18px; margin-left:10px; padding: 2px; border-radius: 100%;}
+.team .team_top .t_t_img img{ width: 100%;}
+.team .team_top ul{ width: auto; float: left;margin-left:10px;}
+.team .team_top ul li{ width: 100%%; height: 30px; line-height: 30px; font-size: 14px; color: #fff;overflow: hidden; text-overflow: ellipsis;white-space:nowrap; display: block; clear:both; }
+.team .team_top ul li span{ color: #fe837d; margin-right: 5px; width: 70px; float: left}
+.team .team_top ul li img{ width: 16px; height: 16px; display: block; margin-right: 5px; float: left; margin-top:7px;}
+.team .team_bottom{ width: 100%;}
+.team .team_bottom h3{ height: 40px; line-height: 40px; padding:0 3%; font-size: 14px; color: #999; background: #fff; border-bottom: solid 1px #d2d0d0; }
+.team .team_bottom ul{ width: 100%; background: #fff;}
+.team .team_bottom ul li{ border-bottom: solid 1px #d2d0d0; padding:3% 3%; width: 94%;}
+.team .team_bottom ul li .right{ width: 100%;margin:0px 0;}
+.team .team_bottom ul li .right p{ float: left;  width: 50%; font-size: 14px; color: #888; line-height: 30px;overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical;}
+.team .team_bottom ul li .right p.top{ color: #000; font-size: 16px}
+.team .team_bottom ul li .right p.top:nth-child(2){ text-align: right; width: 30%}
+.team .team_bottom ul li .right p.top:nth-child(1){ width: 70%;}
+
 @media screen and (max-width: 420px){
 /* .my_wallet h3{ font-size: 20px;} */
 .my_wallet h3 span{ font-size: 14px;}
@@ -173,10 +193,12 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 }
 
 @media screen and (max-width: 360px){
+.team .team_top ul{ width: 230px;}
 }
 
 @media screen and (max-width: 320px){
 .details ul li .left .title{ font-size: 16px;}
 .details ul li .left .tit{ font-size: 12px;}
 .details ul li .right{ font-size: 16px;}
+.team .team_top ul{ width: 190px;}
 }

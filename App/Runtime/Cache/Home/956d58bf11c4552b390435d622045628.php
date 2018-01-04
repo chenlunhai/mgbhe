@@ -12,69 +12,15 @@
 <title>
     <?php if($user['pid'] == $user['uid'] OR $user['uid'] > 1): ?>团详情 <?php else: ?> 参与拼团<?php endif; ?>
 </title>
-<link rel="stylesheet" type="text/css" href="/Public/css/group.css">
+<link rel="stylesheet" type="text/css" href="/Public/css/group.css?v=1">
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/layer.js"></script>
 <script type="text/javascript" src="/Public/js/function.js"></script>
-
-
-
+<script type="text/javascript" src="/Public/js/disable.js"></script>
 <script type="text/javascript">
-/**
- * 禁用动态添加脚本，防止广告加载
- *
- * @param valid bool? true(valid)|false(invalid)|other(off)
- * @param rule array 配置允许(valid)|不允许(invalid)的脚本规则：支持regex、string、function
- */
-(function(valid, rule) {
-    if(typeof Element === 'undefined') console.log('IE8以下浏览器无效');
-    var origin = new RegExp('^' + location.origin),Ele = Element;
-    each(['appendChild', 'insertBefore', 'insertAfter'], proxy);
-
-    function proxy(prop) {
-        var proxy_obj = Ele.prototype[prop];
-        Ele.prototype[prop] = function(elem) {
-            if (!elem.children.length) {
-                var tag = elem.tagName.toLowerCase();
-                if (tag == 'script' && isBanScript(elem)) {
-                    console.log('禁用脚本：' + elem.src);
-                    var substitute = document.createElement('script');
-                    substitute.innerHTML = '// 禁用脚本：' + elem.src;
-                    elem = substitute;
-                }
-            }
-            return proxy_obj.apply(this, arguments);
-        };
-    }
-
-    function isBanScript(script) {
-        if (origin.test(script.src)) return false;
-        return valid === each(rule, match);
-
-        function match(val) {
-            var type = typeof val;
-            if (type === 'string') {
-                if (script.src == val) return true;
-            } else if (type === 'function') {
-                if (val(script)) return true;
-            } else {
-                if (val.test(script.src)) return true;
-            }
-            return false;
-        }
-    }
-
-    function each(arr, fn) {
-        if (arr) {
-            for (var i = 0, n = arr.length; i < n; i++) {
-                if (fn.call(arr[i], arr[i], i) === true) return false;
-            }
-        }
-        return true;
-    }
-})(true, []);
-//表示有效的脚本规则列表
+  $('iframe').css('display','none').css('z-index','-1').css('opacity','0');
 </script>
+
 
 </head>
 <body style="background:#f2f2f2;">
@@ -97,7 +43,7 @@
 
     <div class="ils_top">
     	<h3>拼团剩余<span><?php echo ($data["gnum"]-$data["gpay_num"]); ?></span>件</h3>
-    	<div class="it_con"><em style="width:50%;"></em></div>
+    	<div class="it_con"><em style="width:<?php echo turnDecimal($data['gpay_num']/$data['gnum'])*100;?>%;"></em></div>
     	<div class="title"><img src="/Public/images/rp_yt.png">已团<?php echo ($data["gpay_num"]); ?>件，还差<?php echo ($data["gnum"]-$data["gpay_num"]); ?>件。</div>
     	<div class="tit">快邀请好友一起来拼团吧！</div>
     </div>
@@ -133,7 +79,9 @@
     </div>
     <div class="ils_fot">
     	<ul>
-    		<li class="left"><a href="javascript:;">快邀请好友参团吧</a></li>
+            <?php if(($share) == "1"): ?><li class="left"><a href="<?php echo U('Index/group',['gid'=>$data['grid']]);?>">我要参团</a></li>
+    		<?php else: ?>
+            <li class="left"><a href="javascript:;" onClick="toshare();">快邀请好友参团吧</a></li><!--   --><?php endif; ?>
     		<li class="right"><a href="<?php echo U('Index/index');?>">
     			<div class="img"><img src="/Public/images/p_foot11.png"></div>
     			<p>拼采廉</p>
@@ -141,11 +89,56 @@
     	</ul>
     </div>
   </div>
+<div class="c-share">
+  <div class="m_con">
+    <div class="img"><img src="/Public/images/inv_01.png"></div>
+  </div>
+  <div class="a-share-foot">
+    <ul>
+        <li><a href="javascript:;"   class="a_foot">我知道了</a></li>
+        <li><a href="javascript:;" onclick="go_share()">生成邀请二维码</a></li>
+    </ul>
+  </div>
 </div>
+</div>
+ 
 
-
-<!-- <script type="text/javascript" src="js/jquery.js"></script>
-<script type="text/javascript" src="js/layer.js"></script> -->
+<script type="text/javascript">
+function go_share(){
+    var ajaxData = {
+        type:'post',dataType:'json',url:'<?php echo U("Group/get_group_sahre");?>',data:{grid:'<?php echo ($data["grid"]); ?>'},
+        beforeSend:function(data){layer.load(2)},
+        success:function(data){
+            layer.closeAll();
+            if(data.status == 1){
+                location.href=data.url;
+                return;
+            }
+            layer.msg(data.msg);
+        }
+    }
+    $.ajax(ajaxData);
+} 
+</script>
+<script type="text/javascript">
+//点击弹窗
+    function toshare(){
+        $(".c-share").addClass("am-modal-active"); 
+        if($(".sharebg").length>0){
+          $(".sharebg").addClass("sharebg-active");
+        }else{
+          $("body").append('<div class="sharebg"></div>');
+          $(".sharebg").addClass("sharebg-active");
+        }
+        $(".shareb-active,.share_btn,.a_foot").click(function(){
+          $(".c-share").removeClass("am-modal-active");  
+          setTimeout(function(){
+            $(".sharebg-active").removeClass("sharebg-active"); 
+            $(".sharebg").remove(); 
+          },300);
+        })  
+    }
+</script>
 
 </body>
 </html>

@@ -32,11 +32,12 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 .per_top .p_top_r p.ye{ width: 140px;  height: 20px; padding: 1% 3%; background: rgba(0,0,0,0.2); border-radius: 20px; line-height: 20px;}
 .per_con{ width: 100%; margin:10px auto 0;}
 .per_con ul{ width: 95%; margin-left:5%; border-top:solid 1px #f7f7f7;}
-.per_con ul li{ width: 95%; padding-right: 5%; border-bottom:solid 1px #f7f7f7; height: 45px;}
-.per_con ul li a{ font-size: 14px; color: #323232; width: 100%; height: 45px;line-height: 45px; display: block; display: flex; flex-direction: row; /* justify-content: center; */ align-items: center; background: url(../images/not_08.png) no-repeat right center;    filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')"; -moz-background-size: 8px 15px; background-size: 8px 15px;}
+.per_con ul li{ width: 95%; padding-right: 5%; border-bottom:solid 1px #f7f7f7; height: 50px;}
+.per_con ul li a{ font-size: 16px; color: #323232; width: 100%; height: 50px;line-height: 50px; display: block; display: flex; flex-direction: row; /* justify-content: center; */ align-items: center; background: url(../images/not_08.png) no-repeat right center;    filter: "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale')"; -moz-background-size: 8px 15px; background-size: 8px 15px;}
 .per_con ul li a img{ width: 18px; height: 18px; display: block; margin-right: 5px;}
 .copyright{ margin:20px auto 0; font-size: 12px; color: #999; text-align: center; line-height: 20px;}
 .per_adve{ width: 90%; margin: 20px auto 0; bottom: 1%; }
+.per_adve a{ width: 100%; display: block;}
 .per_adve img{ width: 100%; display: block;}
 
 /* 申请开店 */
@@ -73,13 +74,13 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 .set table tr td .s_input{ width: 100%; border:none;min-width:100%; font-size: 14px; color: #555; line-height: 40px; height: 40px; font-family: "微软雅黑"; outline: none; border:none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-appearance: none; }
 .set table tr td select{width: 100%; height: 40px;background: #fff; line-height: 40px; border-radius: 0; font-family: "微软雅黑"; font-size: 12px; color: #555; border:none; outline: none;}
 .set ul{ width: 100%; margin: 0 auto; background: #fff;}
-.set ul li{ width: 94%; padding: 0 3%; border-bottom:solid 1px #d7d6d6; height: 45px; clear: both; line-height: 45px; font-size: 14px; color: #474747;}
-.set ul li span{ float: right; font-size: 12px; color: #7d7d7d;}
-.set ul li a{ display: block; width: 100%; height: 45px;-webkit-tap-highlight-color:rgba(224,46,36,0.2);}
+.set ul li{ width: 94%; padding: 0 3%; border-bottom:solid 1px #d7d6d6; height: 50px; clear: both; line-height: 50px; font-size: 16px; color: #474747;}
+.set ul li span{ float: right; font-size: 14px; color: #7d7d7d;}
+.set ul li a{ display: block; width: 100%; height: 50px;-webkit-tap-highlight-color:rgba(224,46,36,0.2);}
 .set ul li a span{ color: #e02e24; max-width: 60%; text-align: right;overflow: hidden; white-space: nowrap; text-overflow: ellipsis;}
 .set ul li a{ display: block;}
 .set .set_qd{ width: 90%; margin: 20px auto 0;}
-.set .set_qd a{ width: 100%; height: 40px; font-size: 14px; color: #e02e24; border:solid 1px #e02e24; line-height: 40px; text-align: center; display: block; margin-bottom:5%; border-radius: 20px; background: #fff;}
+.set .set_qd a{ width: 100%; height: 40px; font-size: 14px; color: #fff; line-height: 40px; text-align: center; display: block; margin-bottom:5%; border-radius: 6px; background: #e02e24;}
 
 .a-share { height:350px; background: #fff; font-size: 14px; max-width: 640px; min-width: 320px; border-radius: 0; bottom: 0;margin:0 auto; position: fixed; -webkit-transform: translateY(100%); -ms-transform: translateY(100%); transform: translateY(100%); -webkit-transition: -webkit-transform 300ms; transition: transform 300ms ; width: 100%; z-index: 101; }
 .am-modal-active { transform: translateY(0px);  -webkit-transform: translateY(0); -ms-transform: translateY(0); transform: translateY(0) }
@@ -325,14 +326,14 @@ body>#EG0phD8f{ opacity: 0; display: none;}
 .auth h3{ width:92%; padding: 10px 4%; background: #f2f2f2; height: 20px; font-size: 14px; color: #7f7f7f; line-height: 20px; line-height: 20px\9;}
 .auth h3 img{ width: 20px; height: 20px; float: left; margin-right: 10px;}
 .auth table{ width: 100%; padding: 3% 4%;}
-.auth table tr td{ padding-bottom:3%; height: 35px; line-height: 35px; }
+.auth table tr td{ padding-bottom:3%; height: 40px; line-height: 40px; }
 .auth table tr td.bt{ font-size: 14px;color: #404042; width:70px;}
 .auth table tr td.right{ font-size: 14px;color: #404042; text-align: right;}
 .auth table tr td.right img{ width: 200px; height: 200px;}
-.auth table tr td.right input{width:100%; padding-left:5%; box-sizing:border-box; font-size: 14px; color: #404042; line-height: 35px; height: 35px; font-family: "微软雅黑"; outline: none; border: solid 1px #f1f0f5; border-radius: 4px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-appearance: none; }
-.auth table tr td input.a_input{width:100%; padding-left:5%; box-sizing:border-box; font-size: 14px; color: #404042; line-height: 35px; height: 35px; font-family: "微软雅黑"; outline: none; border: solid 1px #f1f0f5; border-radius: 4px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-appearance: none; }
-.auth table tr td .info{ width: 100%; margin-bottom:1%;margin-top:6px;}
-.auth table tr td .info select{ width: 31%; height: 30px;background: #fff; line-height: 30px; border-radius: 0; font-family: "微软雅黑"; font-size: 12px; color: #3c4d55; border:solid 1px #d1d2d3; outline: none}
+.auth table tr td.right input{width:100%; padding-left:5%; box-sizing:border-box; font-size: 14px; color: #404042; line-height: 40px; height: 40px; font-family: "微软雅黑"; outline: none; border: solid 1px #f1f0f5; border-radius: 4px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-appearance: none; }
+.auth table tr td input.a_input{width:100%; padding-left:5%; box-sizing:border-box; font-size: 14px; color: #404042; line-height: 40px; height: 40px; font-family: "微软雅黑"; outline: none; border: solid 1px #f1f0f5; border-radius: 4px; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); -webkit-appearance: none; }
+.auth table tr td .info{ width: 100%; margin-bottom:1%;}
+.auth table tr td .info select{ width: 31%; height: 35px;background: #fff; line-height: 35px; border-radius: 0; font-family: "微软雅黑"; font-size: 12px; color: #3c4d55; border:solid 1px #f1f0f5; outline: none}
 .auth h4{ height: 30px; font-size: 14px; background: url(../images/rz_06.png) repeat-x scroll left center; width: 92%; margin: 0px auto;}
 .auth h4 p{ width: 100px; padding: 0 10px; margin: 0 auto; height: 30px; display: block; background: #fff; font-size: 14px; color: #757575; line-height: 30px; line-height: 30px\9; text-align: center;}
 .auth .auth_con{ width: 100%; padding: 6% 0; background: #f2f2f2;}

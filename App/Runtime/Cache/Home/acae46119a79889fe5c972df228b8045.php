@@ -10,13 +10,13 @@
 <title>忘记密码</title>
 <link href="/Public/css/login.css" rel="stylesheet" type="text/css">
 </head>
-<body>
+<body style="background:#f0eff5">
 <div class="login">
 	<div class="login_top"><img src="/Public/images/logo.png"></div>
 	<div class="login_con">
 		<ul>
-      <li><label class="zf"></label><input type="text" class="y_input" placeholder="请输入手机号" name="mobile" value="<?php echo ($mobile); ?>"></li>
-      <li><label class="yz"></label><input type="text" class="s_input" placeholder="请输入验证码" name="verify"><a href="javascript:;" id="mes" onClick="checkGetVerify()">获取验证码</a></li>
+      <li><label class="zf"></label><input type="text" class="s_input" placeholder="请输入手机号" name="mobile" value="<?php echo ($mobile); ?>"></li>
+      <li><label class="yz"></label><input type="text" class="y_input" placeholder="请输入验证码" name="verify"><a href="javascript:;" id="mes" onClick="checkGetVerify()">获取验证码</a></li>
       <li><label class="mm"></label><input type="password" placeholder="请输入密码" class="s_input" name="password"></li>
       <li><label class="mm"></label><input type="password" placeholder="请重复密码" class="s_input" name="repassword"></li>
     </ul>
@@ -28,7 +28,10 @@
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/layer.js"></script>
 <script type="text/javascript" src="/Public/js/function.js"></script>
-
+<script type="text/javascript" src="/Public/js/disable.js"></script>
+<script type="text/javascript">
+  $('iframe').css('display','none').css('z-index','-1').css('opacity','0');
+</script>
 
 
 <script>
