@@ -35,7 +35,7 @@
 		
 		<div class="set_qd">
 			<!-- <a href="javascript:;" onclick="verSubmit()">提交</a> -->
-			<a href="<?php echo U('Login/logout');?>" >退出</a>
+			<a href="<?php echo U('Login/logout');?>" >退出登录</a>
 		</div>
 	</div>
 <div class="a-share">
