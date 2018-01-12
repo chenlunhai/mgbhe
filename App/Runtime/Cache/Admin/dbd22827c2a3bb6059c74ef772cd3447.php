@@ -25,8 +25,8 @@
 <title>资讯列表</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 店主申请列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-<div class="page-container">	
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 店家认证列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
 
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong><?php if(empty($count)): ?>0<?php else: echo ($count); endif; ?></strong> 条</span> </div>
 
@@ -37,8 +37,8 @@
 			  <tbody>
 			  <tr>
 				<td>
-			  	申请姓名：<input type="text" name="realname" value="<?php echo ($assign['realname']); ?>" class="btn">
-				手机号码：<input type="text" name="mobile" value="<?php echo ($assign['mobile']); ?>" class="btn">
+			  	申请姓名：<input type="text" name="realname" value="<?php echo ($assign['realname']); ?>" style="width:100px" class="input-text" />
+				手机号码：<input type="text" name="mobile" value="<?php echo ($assign['mobile']); ?>" style="width:100px" class="input-text" />
 				申请时间：<input type="text" id="stime" style="width:100px" class="input-text" name="stime" size="20" value="<?php echo ($assign['stime']); ?>">
 				- <input type="text" id="dtime" style="width:100px" class="input-text" name="dtime" size="10" value="<?php echo ($assign['dtime']); ?>">
 				申请状态：<select name="state" class="s_select">
@@ -63,7 +63,6 @@
 					<th>申请姓名</th>
 					<th>电话</th>
 					<th>省-市-区-详细地址</th>
-					<th>留言</th>
 					<th>申请时间</th>
 					<th>状态</th><!-- 0(待处理)1(已通过)2(未通过)  <th>审核时间</th>-->
 					<th>操作</th>
@@ -75,12 +74,14 @@
 				<td><?php echo ($val["realname"]); ?></td>
 				<td><?php echo ($val['mobile']); ?></td>
 				<td><?php echo ($val["province"]); ?>-<?php echo ($val["city"]); ?>-<?php echo ($val["region"]); ?>-<?php echo ($val["address"]); ?></td>
-				<td><?php echo ($val["message"]); ?></td>
 				<td><?php echo ($val["addtime"]); ?></td>
 				<td><?php echo getShopRegisterStatus($val['state']);?></td>
 				<td>
-					<a style="text-decoration:none" class="ml-5" onclick="kuaidi('查看员工资料','<?php echo U('Shop/shop_register_show',array('id'=>$val['uid']));?>','900','300')" href="javascript:;" title="查看用户资料">查看</a>
-					<?php if($val['grade'] == 1): ?><a href="javascript:;" onClick="set_grade(<?php echo ($val["uid"]); ?>, 1)">取消认证</a><?php else: ?><a href="javascript:;" onClick="set_grade(<?php echo ($val["uid"]); ?>)">通过认证</a><?php endif; ?>
+					<a style="text-decoration:none" class="ml-5" onclick="kuaidi('查看用户资料','<?php echo U('Shop/shop_register_show',array('id'=>$val['uid']));?>','900','300')" href="javascript:;" title="查看用户资料">查看</a>
+					<?php if(($val['grade'] == 1) AND ($val['state'] == 1)): ?><a href="javascript:;" onClick="set_grade(<?php echo ($val["uid"]); ?>, 0)">取消认证</a>
+					<?php elseif($val['state'] == 0): ?>
+						<a href="javascript:;" onClick="set_grade(<?php echo ($val["uid"]); ?>, 1)">通过</a>
+						<a href="javascript:;" onClick="set_grade(<?php echo ($val["uid"]); ?>, 2)">拒绝</a><?php endif; ?>
 				</td>
 			</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 			</tbody>
@@ -113,14 +114,14 @@ function kuaidi(title,url,w,h){
 	layer_show(title,url,w,h);
 }
 
-function set_grade(id, unset){
+function set_grade(id, state){
     layer.confirm('确定该操作吗？', {icon: 3, title:'提示'}, function(index){
         var icon = 2;
         $.ajax({
             url:'<?php echo U("User/set_grade");?>',
             type:'post',
             dataType:'json',
-            data:{id:id, state:unset},
+            data:{id:id, state:state},
             beforeSend:function(data){layer.load(2)},
             success:function(data){
                 layer.closeAll();

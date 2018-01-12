@@ -59,10 +59,9 @@
 					<th>姓名</th>
 					<th>电话</th>
 					<th>省-市-区</th>
-					<th>开户银行</th>
-					<th>开户支行</th>
-					<th>开户卡号</th>
-					<th>开户姓名</th>
+					<th>用户类型</th>
+				 	<th>余额</th>
+				 	<th>积分</th>
 					<th>注册时间</th>
 					<th>操作</th>
 					 
@@ -74,16 +73,17 @@
 		
 				<td><?php echo ($val["realname"]); ?></td>
 				<td><?php echo ($val["mobile"]); ?></td>
-				<th><?php echo ($val["province"]); ?>-<?php echo ($val["city"]); ?>-<?php echo ($val["region"]); ?></th>
-				<td><?php echo ($val["bank_user"]); ?></td>
-				<td><?php echo ($val["bank_address"]); ?></td>
-				<td><?php echo ($val["bank_card"]); ?></td>
-				<td><?php echo ($val["bank_name"]); ?></td>
+				<td><?php echo ($val["province"]); ?>-<?php echo ($val["city"]); ?>-<?php echo ($val["region"]); ?></td>
+				<td><?php echo getGrade($val['grade']);?></td>
+				<td><?php echo ($val["balance"]); ?></td>
+				<td><?php echo ($val["integral"]); ?></td>
 				<td><?php echo ($val["addtime"]); ?></td>
 				<td>
 					<a style="text-decoration:none" class="ml-5" onclick="kuaidi('编辑用户资料','<?php echo U('User/up_user_detail',array('id'=>$val['id']));?>','800','450')" href="javascript:;" title="编辑用户资料">编辑</a>
 
-					<?php if($val['grade'] == 1): ?><a href="javascript:;" onClick="set_supplier(<?php echo ($val["id"]); ?>)">设为供应商</a><?php endif; ?>
+					<?php if(($val['grade'] == 1) and ($val['supply_grade'] == 0)): ?><a href="javascript:;" onClick="set_supplier(<?php echo ($val["id"]); ?>)">设为供应商</a><?php endif; ?>
+					<?php if($val['supply_grade'] == 1): ?><a href="javascript:;" onClick="set_supplier(<?php echo ($val["id"]); ?>, 1)">取消供应商</a><?php endif; ?>
+					<a href="javascript:;" onClick="kuaidi('设为代理', '<?php echo U('User/set_agent',array('id'=>$val['id']));?>','800','450')">设为代理</a>
 				</td>
 			</tr><?php endforeach; endif; else: echo "" ;endif; ?>
 			
@@ -156,17 +156,18 @@ function sub_shop(id){
 	})
 }
 
-function set_supplier(id){
+function set_supplier(id, unset){
     layer.confirm('确定该操作吗？', {icon: 3, title:'提示'}, function(index){
         var icon = 2;
         $.ajax({
             url:'<?php echo U("User/set_supplier");?>',
             type:'post',
             dataType:'json',
-            data:{id:id},
+            data:{id:id, state:unset},
             beforeSend:function(data){layer.load(2)},
             success:function(data){
                 layer.closeAll();
+                if(data.status == 1) setTimeout('location.reload()',2000);
                 layer.msg(data.msg, { icon: data.status, shade: 0.5, time: 2000 });
             }
         })

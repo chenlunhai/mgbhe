@@ -47,11 +47,21 @@
 	<div class="menu_dropdown bk_2">
 		 
 		<dl id="menu-article">
+			<dt><em class="m_cn"><img src="/Public/admin/images/x_15.png"></em> <strong>认证中心</strong><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+			<dd style="display: block;">
+				<ul>
+                    <li><a _href="<?php echo U('Shop/member_certification_list');?>" data-title="实名认证" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_06.png"></div>消费者实名认证</a></li>
+                    <li><a _href="<?php echo U('Shop/wrd_register_list');?>" data-title="无人店申请" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_02.png"></div>无人店申请</a></li>
+                    <li><a _href="<?php echo U('Shop/shop_register_list');?>" data-title="店家认证列表" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_md.png"></div>店家认证列表</a></li>
+                    <li><a _href="<?php echo U('Shop/supplier_register_list');?>" data-title="厂家认证列表" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_xt.png"></div>厂家认证列表</a></li>
+				</ul>
+			</dd>
+		</dl>
+		<dl id="menu-article">
 			<dt><em class="m_cn"><img src="/Public/admin/images/x_md.png"></em> <strong>店家管理</strong><i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd style="display: block;">
 				<ul>
                     <li><a _href="<?php echo U('Shop/shoplist');?>" data-title="店家列表" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_01.png"></div>店家列表</a></li>
-                    <li><a _href="<?php echo U('Shop/shop_register_list');?>" data-title="店家认证列表" href="javascript:void(0)"><div class="img"><img src="/Public/admin/images/x_02.png"></div>店家认证列表</a></li>
 				</ul>
 			</dd>
 		</dl>

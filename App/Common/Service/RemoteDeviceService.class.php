@@ -18,8 +18,7 @@ class RemoteDeviceService
     public function HotCoffee($param)
     {
         try {
-
-
+            
             header("content-type:text/html;charset=utf-8");
             $client = new SoapClient(self::APIURL);
             $p = $client->__soapCall('AddMemberInfo', array('parameters' => $param));

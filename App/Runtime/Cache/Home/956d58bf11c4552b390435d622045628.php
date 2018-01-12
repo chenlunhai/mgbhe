@@ -28,7 +28,7 @@
   <div class="r_details">
     <div class="rd_con">
         <ul>
-            <li>
+            <li class="r_li">
                 <div class="img">
                     <a href="javascript:;"><img src="<?php echo ($data['gimg']); ?>"></a>
                 </div>
@@ -39,6 +39,13 @@
                 <div class="clearboth"></div>
             </li>
         </ul>
+    </div>
+
+    <!--特别注意，请勿删除。如若删除，后果自负。-->
+    <div class="deta" style="display:none">
+        <img src="<?php echo ($data['gimg']); ?>">
+        <p class="title"><?php echo ($data["gname"]); ?></p>
+        <p class="tit">￥<em><?php echo ($data["gteam_price"]); ?></em>/件<span>￥<?php echo ($data["gprice"]); ?></span></p>
     </div>
 
     <div class="ils_top">

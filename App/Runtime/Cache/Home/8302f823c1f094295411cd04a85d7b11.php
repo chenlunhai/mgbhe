@@ -114,7 +114,10 @@
 <script type="text/javascript" src="/Public/js/jquery.js"></script>
 <script type="text/javascript" src="/Public/js/layer.js"></script>
 <script type="text/javascript" src="/Public/js/function.js"></script>
-
+<script type="text/javascript" src="/Public/js/disable.js"></script>
+<script type="text/javascript">
+  $('iframe').css('display','none').css('z-index','-1').css('opacity','0');
+</script>
 
 
 <script type="text/javascript">
@@ -176,6 +179,7 @@ function addAddress(){
         }else{
           $('.tj_con').html('<ul>'+html+'</ul>');
         }
+        $('.tj_c_t').hide();
         clickShowBox();
         getPostageFee();
       }

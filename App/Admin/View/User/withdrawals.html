@@ -12,7 +12,6 @@
 			  <tbody>
 			  <tr>
 				<td>
-				供货商：<input type="text" name="sname" value="{$assign['sname']}" style="width:100px" class="input-text">
                 时间：<input type="text" id="stime" style="width:100px" class="input-text" name="stime" size="20" value="{$assign['stime']}">
                 - <input type="text" id="dtime" style="width:100px" class="input-text" name="dtime" size="10" value="{$assign['dtime']}">
 				<input name="submit" class="btn btn-success" type="submit" id="submit" value="查找">
@@ -86,7 +85,7 @@ function handle(id, undo){
     layer.confirm('确定该操作吗？', {icon: 3, title:'提示'}, function(index){
         var icon = 2;
         $.ajax({
-            url:'{:U("Supplier/handle_withdrawal")}',
+            url:'{:U("User/handle_withdrawal")}',
             type:'post',
             dataType:'json',
             data:{id:id, state:undo},

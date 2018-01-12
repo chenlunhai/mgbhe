@@ -30,7 +30,7 @@
 			<li>电话<span><?php echo ($data["mobile"]); ?></span></li>
 			<li><a href="javascript:;" onClick="toshare();">提现银行<span><?php if(empty($data["bank_address"])): ?>绑定银行<?php else: echo ($data["bank_user"]); endif; ?></span></a></li>
 			<li>卡号<span><?php echo ($data["bank_card"]); ?></span></li>
-			<li><a href="javascript:;">微信<span>绑定微信</span></a></li>
+			<li><a href="http://test.hnyst.net.cn">微信<span>绑定微信</span></a></li>
 		</ul>
 		
 		<div class="set_qd">

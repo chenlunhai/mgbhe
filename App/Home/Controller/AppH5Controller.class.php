@@ -22,14 +22,17 @@ class AppH5Controller extends Controller {
 			case 6:
 				$order = M('goods_open_group_order')->where(['osn'=>$osn,'pay_status'=>0])->field('pay_price,osn')->find();
 				if(empty($order)) $this->ajaxReturn(['status'=>0,'msg'=>'error #order']);
+				$reurl = 'http://'.$_SERVER['HTTP_HOST'].U('Order/shop_success');
 				break;
 			case 8:
 				$order = M('order_balance')->where(['osn'=>$osn,'pay_status'=>0])->field('money pay_price,osn')->find();
 				if(empty($order)) $this->ajaxReturn(['status'=>0,'msg'=>'error #order']);
+				$reurl = 'http://'.$_SERVER['HTTP_HOST'].U('Order/shop_success');
 				break;
 			case 9:
 				$order = M('order')->where(['osn'=>$osn,'pay_status'=>0])->field('oprice pay_price,osn')->find();
 				if(empty($order)) $this->ajaxReturn(['status'=>0,'msg'=>'error #order']);
+				$reurl = 'http://'.$_SERVER['HTTP_HOST'].U('Order/shop_success');
 				break;
 			default:
 				$this->ajaxReturn(['status'=>0,'msg'=>'error #order']);
@@ -37,7 +40,7 @@ class AppH5Controller extends Controller {
 		}
 		$gourl = 'http://'.$_SERVER['HTTP_HOST'].'/App/Alipay/app/AopSdk.php?money='.$order['pay_price'].'&order_sn='.$order['osn'];
         $res   = file_get_contents($gourl);
-        $this->ajaxReturn(['status'=>1,'msg'=>$res]);
+        $this->ajaxReturn(['status'=>1,'msg'=>$res,'reurl'=>$reurl]);
 	}
 	#返回安卓版本号
 	public function get_version(){

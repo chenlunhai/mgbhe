@@ -34,6 +34,7 @@
 		<div class="clearboth"></div>
 	</div>
 	<div class="per_con">
+		<h3><a href="{:U('Group/authentication_center')}"><p><img src="__PUBLIC__/images/not_07.png">认证中心<span>去认证<em></em></span></p></a></h3>
 		<ul>
 			<li><a href="{:U('User/my_wallet')}"><img src="__PUBLIC__/images/not_03.png">我的钱包</a></li>
 			<li><a  <if condition="$user['is_shoper'] EQ 0">href="{$authentication}"<else/>href="{:U('User/shop')}"</if>  ><img src="__PUBLIC__/images/not_07.png"> <if condition="$user['is_shoper'] EQ 0">店家认证<else/>我的店铺</if> </a></li>

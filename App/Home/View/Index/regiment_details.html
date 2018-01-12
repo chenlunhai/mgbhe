@@ -20,7 +20,7 @@
   <div class="r_details">
     <div class="rd_con">
         <ul>
-            <li>
+            <li class="r_li">
                 <div class="img">
                     <a href="javascript:;"><img src="{$data['gimg']}"></a>
                 </div>
@@ -31,6 +31,13 @@
                 <div class="clearboth"></div>
             </li>
         </ul>
+    </div>
+
+    <!--特别注意，请勿删除。如若删除，后果自负。-->
+    <div class="deta" style="display:none">
+        <img src="{$data['gimg']}">
+        <p class="title">{$data["gname"]}</p>
+        <p class="tit">￥<em>{$data["gteam_price"]}</em>/件<span>￥{$data["gprice"]}</span></p>
     </div>
 
     <div class="ils_top">

@@ -5,8 +5,8 @@
 <title>资讯列表</title>
 </head>
 <body>
-<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 店主申请列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
-<div class="page-container">	
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 店家认证列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
 
 	<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共有数据：<strong><if condition="empty($count)">0<else />{$count}</if></strong> 条</span> </div>
 
@@ -17,8 +17,8 @@
 			  <tbody>
 			  <tr>
 				<td>
-			  	申请姓名：<input type="text" name="realname" value="{$assign['realname']}" class="btn">
-				手机号码：<input type="text" name="mobile" value="{$assign['mobile']}" class="btn">
+			  	申请姓名：<input type="text" name="realname" value="{$assign['realname']}" style="width:100px" class="input-text" />
+				手机号码：<input type="text" name="mobile" value="{$assign['mobile']}" style="width:100px" class="input-text" />
 				申请时间：<input type="text" id="stime" style="width:100px" class="input-text" name="stime" size="20" value="{$assign['stime']}">
 				- <input type="text" id="dtime" style="width:100px" class="input-text" name="dtime" size="10" value="{$assign['dtime']}">
 				申请状态：<select name="state" class="s_select">
@@ -43,7 +43,6 @@
 					<th>申请姓名</th>
 					<th>电话</th>
 					<th>省-市-区-详细地址</th>
-					<th>留言</th>
 					<th>申请时间</th>
 					<th>状态</th><!-- 0(待处理)1(已通过)2(未通过)  <th>审核时间</th>-->
 					<th>操作</th>
@@ -56,12 +55,16 @@
 				<td>{$val.realname}</td>
 				<td>{$val['mobile']}</td>
 				<td>{$val.province}-{$val.city}-{$val.region}-{$val.address}</td>
-				<td>{$val.message}</td>
 				<td>{$val.addtime}</td>
 				<td>{:getShopRegisterStatus($val['state'])}</td>
 				<td>
-					<a style="text-decoration:none" class="ml-5" onclick="kuaidi('查看员工资料','{:U('Shop/shop_register_show',array('id'=>$val['uid']))}','900','300')" href="javascript:;" title="查看用户资料">查看</a>
-					<if condition="$val['grade'] eq 1"><a href="javascript:;" onClick="set_grade({$val.uid}, 1)">取消认证</a><else /><a href="javascript:;" onClick="set_grade({$val.uid})">通过认证</a></if>
+					<a style="text-decoration:none" class="ml-5" onclick="kuaidi('查看用户资料','{:U('Shop/shop_register_show',array('id'=>$val['uid']))}','900','300')" href="javascript:;" title="查看用户资料">查看</a>
+					<if condition="($val['grade'] eq 1) AND ($val['state'] eq 1)">
+						<a href="javascript:;" onClick="set_grade({$val.uid}, 0)">取消认证</a>
+					<elseif condition="$val['state'] eq 0" />
+						<a href="javascript:;" onClick="set_grade({$val.uid}, 1)">通过</a>
+						<a href="javascript:;" onClick="set_grade({$val.uid}, 2)">拒绝</a>
+					</if>
 				</td>
 			</tr>
 			</volist>
@@ -92,14 +95,14 @@ function kuaidi(title,url,w,h){
 	layer_show(title,url,w,h);
 }
 
-function set_grade(id, unset){
+function set_grade(id, state){
     layer.confirm('确定该操作吗？', {icon: 3, title:'提示'}, function(index){
         var icon = 2;
         $.ajax({
             url:'{:U("User/set_grade")}',
             type:'post',
             dataType:'json',
-            data:{id:id, state:unset},
+            data:{id:id, state:state},
             beforeSend:function(data){layer.load(2)},
             success:function(data){
                 layer.closeAll();

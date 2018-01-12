@@ -10,7 +10,7 @@
 <meta content="no-cache" http-equiv="Pragma">
 <meta name = "format-detection" content = "telephone=no">
 <title>商品详情</title>
-<link rel="stylesheet" type="text/css" href="/Public/css/group.css">
+<link rel="stylesheet" type="text/css" href="/Public/css/group.css?v=0">
 </head>
 <body style="background:#f2f2f2;">
 <div class="main" style="padding-bottom:41px;">
@@ -35,6 +35,13 @@
         <p class="title"><?php echo ($data["gname"]); ?></p>
         <p class="tit">拼团价￥<em><?php echo ($data["gteam_price"]); ?></em>/件 <span>￥<?php echo ($data["gprice"]); ?></span></p>      
         <div class="clearboth"></div>
+      </div>
+
+      <!--特别注意，请勿删除。如若删除，后果自负。-->
+      <div class="deta" style="display:none">
+        <img src="<?php echo ($data["gimg"]); ?>"/>
+        <p class="title"><?php echo ($data["gname"]); ?></p>
+        <p class="tit">拼团价￥<em><?php echo ($data["gteam_price"]); ?></em>/件 <span>￥<?php echo ($data["gprice"]); ?></span></p> 
       </div>
 
       <div class="show_c_n">

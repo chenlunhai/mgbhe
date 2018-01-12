@@ -34,6 +34,7 @@
 		<div class="clearboth"></div>
 	</div>
 	<div class="per_con">
+		<h3><a href="<?php echo U('Group/authentication_center');?>"><p><img src="/Public/images/not_07.png">认证中心<span>去认证<em></em></span></p></a></h3>
 		<ul>
 			<li><a href="<?php echo U('User/my_wallet');?>"><img src="/Public/images/not_03.png">我的钱包</a></li>
 			<li><a  <?php if($user['is_shoper'] == 0): ?>href="<?php echo ($authentication); ?>"<?php else: ?>href="<?php echo U('User/shop');?>"<?php endif; ?>  ><img src="/Public/images/not_07.png"> <?php if($user['is_shoper'] == 0): ?>店家认证<?php else: ?>我的店铺<?php endif; ?> </a></li>

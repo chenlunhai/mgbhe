@@ -47,6 +47,11 @@ table tr td.cen{ font-size: 14px; color: #666; text-align: center;}
 				<td class="bt">开户卡号</td><td class="cen"><?php echo ($user["bank_card"]); ?></td>
 				<td class="bt">开户姓名</td><td class="cen"><?php echo ($user["bank_name"]); ?></td>
 			</tr>
+			<tr>
+				<td class="bt">身份证号码</td><td class="cen"><?php echo ($user["id_card"]); ?></td>
+				<td class="bt"></td><td class="cen"></td>
+				<td class="bt"></td><td class="cen"></td>
+			</tr>
 		</table>
 		<input type="hidden" name="uid" value="<?php echo ($user["id"]); ?>">
 		<iframe   name="nm_iframe" style="display:none;"></iframe>
